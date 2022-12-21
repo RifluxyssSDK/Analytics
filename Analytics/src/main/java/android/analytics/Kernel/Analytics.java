@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Analytics extends Instance {
 
-    public static void init(Context context) {
+    public static void init(Context context, int Duration) {
         getInstance().initDB(context);
     }
 
@@ -17,5 +17,8 @@ public class Analytics extends Instance {
 
     public static List<Schema> getLog() {
         return getInstance().getDao().getAllScheme();
+    }
+
+    public static void duration(int Duration) {
     }
 }

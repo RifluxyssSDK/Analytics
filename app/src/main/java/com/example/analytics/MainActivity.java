@@ -3,6 +3,7 @@ package com.example.analytics;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.analytics.Kernel.Analytics;
+import android.analytics.constant.Duration;
 import android.analytics.dataBase.Schema;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Analytics.init(getBaseContext());
+        Analytics.init(getBaseContext(), Duration.THREE_DAY);
 
-        Analytics.Log(new Schema("ONE","ONE 1"));
-        Analytics.Log(new Schema("TWO","TWO 2"));
+        Analytics.Log(new Schema("ONE 1"));
+
+//        Analytics.Log(new Model());
 
         List<Schema> schemas = Analytics.getLog();
 
