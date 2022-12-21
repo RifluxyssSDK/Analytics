@@ -1,14 +1,13 @@
 package com.example.analytics;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 
+import android.analytics.Kernel.Analytics;
+import android.analytics.dataBase.Schema;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.analytics.dataBase.Model;
-import com.example.analytics.dataBase.Repository;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -16,10 +15,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Repository repository = new Repository(getApplicationContext());
+        Analytics.init(getBaseContext());
 
-        repository.insert(new Model("Mukesh","123"));
+        Analytics.Log(new Schema("ONE","ONE 1"));
+        Analytics.Log(new Schema("TWO","TWO 2"));
 
-        LiveData<ArrayList<Model>> models = repository.getModels();
+        List<Schema> schemas = Analytics.getLog();
+
+        Log.d("TAG", "onCreate: ");
     }
 }
