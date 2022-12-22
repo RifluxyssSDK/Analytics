@@ -28,7 +28,7 @@ public class BackgroundService extends BroadcastReceiver {
             if (schema.getExpiryDate().equalsIgnoreCase(new SimpleDateFormat(
                     ("dd-MM-yyyy"),
                     Locale.getDefault()).format(Calendar.getInstance().getTime())
-            ) || true ) {
+            )) {
                 instance.getDao().delete(schema);
             }
         }
