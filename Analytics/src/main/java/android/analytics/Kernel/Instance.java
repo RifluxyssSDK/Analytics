@@ -3,6 +3,7 @@ package android.analytics.Kernel;
 import android.analytics.dataBase.Dao;
 import android.analytics.dataBase.Database;
 import android.analytics.service.BackgroundService;
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -103,6 +104,7 @@ public class Instance {
     /**
      * Init service. Everyday 11:00 PM Called This Service By Default
      */
+    @SuppressLint("UnspecifiedImmutableFlag")
     protected void initService() {
 
         Log.i("Analytics", "Init Background Service...");
