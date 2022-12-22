@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         List<AnalyticsLog>  analyticsLogs = analytics.getLog();
 
-        Log.e("status","Retrieve Data===> " + new Gson().toJson(analyticsLogs));
     }
 
     @Override

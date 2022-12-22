@@ -4,12 +4,17 @@ import static android.content.Context.JOB_SCHEDULER_SERVICE;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
 
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManager;
@@ -57,22 +62,15 @@ public class Analytics extends AppManager {
     public void deleteBeforeDaysLog(Context context) {
 
         JobScheduler scheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
-        Toast.makeText(context, "Job Service Initiated", Toast.LENGTH_SHORT).show();
 
         JobInfo profileSyncJob = new JobInfo.Builder(2,
                 new ComponentName(context, AnalyticsSyncService.class))
                 .setPeriodic(MINUTES.toMillis(2),MINUTES.toMillis(1))
-                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-                .setRequiresCharging(true)
                 .build();
 
-        scheduler.cancel(2);
-        int status = scheduler.schedule(profileSyncJob);
-        if (status == JobScheduler.RESULT_SUCCESS) {
-            Log.e("status", "Job scheduled successfully");
-        } else {
-            Log.e("status", "Job scheduling failed");
-        }
+        scheduler.schedule(profileSyncJob);
+
     }
+
 
 }
