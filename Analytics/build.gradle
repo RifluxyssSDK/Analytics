@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         minSdk 21
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -39,4 +39,5 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.4.3'
 
     implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.google.android.gms:play-services-gcm:7.5.0'
 }
