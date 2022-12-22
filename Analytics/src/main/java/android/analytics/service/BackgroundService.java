@@ -11,25 +11,28 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * The type Background service.
+ */
 public class BackgroundService extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.e("STATUS", "Deleting Expire Details On Database");
-
         Instance instance = Instance.getInstance();
         instance.initDB(context);
 
-        Log.e("STATUS", "SIZE : " + instance.getDao().getAllScheme().size());
+        Log.i("Analytics", "Size Of DataBase Before Deleting: " + instance.getDao().getAllScheme().size());
 
         for (Schema schema : instance.getDao().getAllScheme()) {
-            if (schema.getExpiryDate().equalsIgnoreCase(
-                    new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().getTime()))) {
+            if (schema.getExpiryDate().equalsIgnoreCase(new SimpleDateFormat(
+                    ("dd-MM-yyyy"),
+                    Locale.getDefault()).format(Calendar.getInstance().getTime())
+            ) || true ) {
                 instance.getDao().delete(schema);
             }
         }
 
-        Log.e("STATUS", "SIZE : " + instance.getDao().getAllScheme().size());
+        Log.i("Analytics", "Size Of DataBase After Deleting: " + instance.getDao().getAllScheme().size());
     }
 }

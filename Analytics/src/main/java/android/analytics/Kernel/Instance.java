@@ -2,7 +2,14 @@ package android.analytics.Kernel;
 
 import android.analytics.dataBase.Dao;
 import android.analytics.dataBase.Database;
+import android.analytics.service.BackgroundService;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
+import java.util.Calendar;
 
 /**
  * The type Instance.
@@ -91,5 +98,29 @@ public class Instance {
     public void initDB(Context context) {
         setContext(context);
         setDao(Database.getInstance().dao());
+    }
+
+    /**
+     * Init service. Everyday 11'O Clock PM
+     */
+    protected void initService() {
+
+        Log.i("Analytics", "Init Background Service...");
+
+        AlarmManager alarmManager = (AlarmManager) getInstance().getContext().getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+
+        alarmManager.setInexactRepeating(
+                AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
+                PendingIntent.getBroadcast(
+                        getInstance().getContext(),
+                        (101),
+                        new Intent(getInstance().getContext(), BackgroundService.class),
+                        (0))
+        );
     }
 }

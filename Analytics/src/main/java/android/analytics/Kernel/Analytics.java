@@ -28,19 +28,8 @@ public class Analytics extends Instance {
      */
     public static void init(Context context, int logExpireDayCount) {
         getInstance().initDB(context);
-        initService();
+        getInstance().initService();
         getInstance().setLogExpireDayCount(logExpireDayCount);
-    }
-
-    private static void initService() {
-        Log.e("STATUS", "Alarm init");
-        Intent intent = new Intent(getInstance().getContext(), BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getInstance().getContext(), 234324243, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) getInstance().getContext().getSystemService(Context.ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     /**
