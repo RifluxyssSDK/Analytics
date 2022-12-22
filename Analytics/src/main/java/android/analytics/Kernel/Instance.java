@@ -101,7 +101,7 @@ public class Instance {
     }
 
     /**
-     * Init service. Everyday 11'O Clock PM
+     * Init service. Everyday 11:00 PM Called This Service By Default
      */
     protected void initService() {
 
