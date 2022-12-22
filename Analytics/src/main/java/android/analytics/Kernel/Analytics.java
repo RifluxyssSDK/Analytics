@@ -5,40 +5,35 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
-/**
- * The type Analytics.
- */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Analytics extends Instance {
 
-    /**
-     * Init.
-     *
-     * @param context the context
-     */
-    public static void init(Context context) {
+    public static void init(Context context,int logExpireDayCount) {
         getInstance().initDB(context);
+        getInstance().setLogExpireDayCount(logExpireDayCount);
+        deleteExpiryData();
     }
 
-    /**
-     * Insert.
-     *
-     * @param <T>   the type parameter
-     * @param klass the klass
-     */
+    private static void deleteExpiryData() {
+        for (Schema schema : getInstance().getDao().getAllScheme()) {
+            if (schema.getExpiryDate().equalsIgnoreCase(
+                    new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().getTime()))
+            ) {
+                getInstance().getDao().delete(schema);
+            }
+        }
+    }
+
     public static <T> void insert(T klass) {
         getInstance().getDao().insert(new Schema(klass.getClass().getCanonicalName(), new Gson().toJson(klass)));
     }
 
-    /**
-     * Get list.
-     *
-     * @param <T>   the type parameter
-     * @param klass the klass
-     * @return the list
-     */
     public static <T> List<T> get(Class<T> klass) {
         ArrayList<T> tArrayList = new ArrayList<>();
         for (Schema schema : getInstance().getDao().getAllScheme()) {
@@ -47,12 +42,5 @@ public class Analytics extends Instance {
             }
         }
         return tArrayList;
-    }
-
-    /**
-     * Terminate.
-     */
-    public static void terminate() {
-        setInstance(null);
     }
 }

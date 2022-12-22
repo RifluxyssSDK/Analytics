@@ -1,8 +1,6 @@
 package android.analytics.dataBase;
 
 import android.analytics.Kernel.Instance;
-import android.annotation.SuppressLint;
-import android.provider.Settings;
 import android.text.format.DateFormat;
 
 import androidx.room.ColumnInfo;
@@ -14,9 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * The type Schema.
- */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 @Entity(tableName = "person")
 public class Schema {
@@ -25,157 +20,79 @@ public class Schema {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "Key")
-    private String key;
+    private final String key;
+    @ColumnInfo(name = "Create Date")
+    private String createDate;
+    @ColumnInfo(name = "Expiry Date")
+    private String expiryDate;
+    @ColumnInfo(name = "Create Time")
+    private String createTime;
     @ColumnInfo(name = "Data")
-    private String data;
-    @ColumnInfo(name = "Time")
-    private String time;
-    @ColumnInfo(name = "Date")
-    private String date;
-    @ColumnInfo(name = "Device ID")
-    private String deviceID;
+    private final String data;
 
-    /**
-     * Instantiates a new Schema.
-     *
-     * @param key  the key
-     * @param data the data
-     */
     public Schema(String key, String data) {
         this.key = key;
         this.data = data;
-        setDate();
-        setTime();
-        setDeviceID();
+        setCreateTime();
+        setCreateDate();
+        setExpiryDate();
     }
 
-    private void setTime() {
-        String time = (String) DateFormat.format("hh:mm:ss aaa", Calendar.getInstance().getTime());
-        setTime(time);
+    private void setCreateTime() {
+        setCreateTime((String) DateFormat.format("hh:mm aaa",Calendar.getInstance().getTime()));
     }
 
-    /**
-     * Gets data.
-     *
-     * @return the data
-     */
-    public String getData() {
-        return data;
+    private void setExpiryDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, Instance.getInstance().getLogExpireDayCount());
+        Date date = calendar.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        setExpiryDate(simpleDateFormat.format(date));
     }
 
-    /**
-     * Sets data.
-     *
-     * @param data the data
-     */
-    public void setData(String data) {
-        this.data = data;
+    public void setCreateDate() {
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        setCreateDate(simpleDateFormat.format(date));
     }
 
-    /**
-     * Gets id.
-     *
-     * @return the id
-     */
     public int getId() {
         return id;
     }
 
-    /**
-     * Sets id.
-     *
-     * @param id the id
-     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * Gets device id.
-     *
-     * @return the device id
-     */
-    public String getDeviceID() {
-        return deviceID;
-    }
-
-    /**
-     * Sets device id.
-     */
-    @SuppressLint("HardwareIds")
-    public void setDeviceID() {
-        setDeviceID(Settings.Secure.getString(Instance.getInstance().getContext().getContentResolver(), Settings.Secure.ANDROID_ID));
-    }
-
-    /**
-     * Gets date.
-     *
-     * @return the date
-     */
-    public String getDate() {
-        return date;
-    }
-
-    /**
-     * Sets date.
-     */
-    public void setDate() {
-        Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        setDate(simpleDateFormat.format(date));
-    }
-
-    /**
-     * Sets date.
-     *
-     * @param date the date
-     */
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    /**
-     * Sets device id.
-     *
-     * @param deviceID the device id
-     */
-    public void setDeviceID(String deviceID) {
-        this.deviceID = deviceID;
-    }
-
-    /**
-     * Gets time.
-     *
-     * @return the time
-     */
-    public String getTime() {
-        return time;
-    }
-
-    /**
-     * Sets time.
-     *
-     * @param time the time
-     */
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    /**
-     * Gets key.
-     *
-     * @return the key
-     */
     public String getKey() {
         return key;
     }
 
-    /**
-     * Sets key.
-     *
-     * @param key the key
-     */
-    public void setKey(String key) {
-        this.key = key;
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getData() {
+        return data;
     }
 }
