@@ -39,9 +39,8 @@ public class Instance {
         this.dao = dao;
     }
 
-    protected <T> void initDB(Context context) {
+    public void initDB(Context context) {
         setContext(context);
         setDao(Database.getInstance().dao());
     }
-
 }

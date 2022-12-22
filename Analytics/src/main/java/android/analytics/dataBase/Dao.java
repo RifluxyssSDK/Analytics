@@ -7,6 +7,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 @androidx.room.Dao
 public interface Dao {
 

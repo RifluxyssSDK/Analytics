@@ -7,7 +7,6 @@ import android.text.format.DateFormat;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.text.SimpleDateFormat;
@@ -15,12 +14,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 @Entity(tableName = "person")
 public class Schema {
 
     @ColumnInfo(name = "ID")
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "Key")
+    private String key;
     @ColumnInfo(name = "Data")
     private String data;
     @ColumnInfo(name = "Time")
@@ -30,7 +32,8 @@ public class Schema {
     @ColumnInfo(name = "Device ID")
     private String deviceID;
 
-    public Schema(String data) {
+    public Schema(String key, String data) {
+        this.key = key;
         this.data = data;
         setDate();
         setTime();
@@ -38,7 +41,7 @@ public class Schema {
     }
 
     private void setTime() {
-        String time = (String) DateFormat.format("hh:mm:ss aaa",Calendar.getInstance().getTime());
+        String time = (String) DateFormat.format("hh:mm:ss aaa", Calendar.getInstance().getTime());
         setTime(time);
     }
 
@@ -91,5 +94,13 @@ public class Schema {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
