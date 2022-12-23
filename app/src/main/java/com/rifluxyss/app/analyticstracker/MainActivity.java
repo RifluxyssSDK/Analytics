@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.rifluxyss.app.analyticstracking.AppManager;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         logEntity.eventNbr = eventNumber;
         logEntity.addtlDesc = description;
         logEntity.addtlNbr = additionalNumber;
+        logEntity.deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         return logEntity;
     }
 

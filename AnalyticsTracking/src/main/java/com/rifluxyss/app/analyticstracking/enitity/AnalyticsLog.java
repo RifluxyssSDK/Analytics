@@ -32,6 +32,6 @@ public class AnalyticsLog extends AnalyticsBaseWithID {
     public Number addtlNbr;
     @SuppressLint("HardwareIds")
     @ColumnInfo(name = "DeviceID")
-    public String deviceID =  Settings.Secure.getString(AppManager.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);;
+    public String deviceID;
 
 }

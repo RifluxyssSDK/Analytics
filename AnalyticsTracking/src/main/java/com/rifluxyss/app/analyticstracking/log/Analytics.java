@@ -1,37 +1,24 @@
 package com.rifluxyss.app.analyticstracking.log;
 
 import static android.content.Context.JOB_SCHEDULER_SERVICE;
-import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.provider.Settings;
-import android.util.Log;
 import android.widget.Toast;
-
-import androidx.core.app.NotificationCompat;
 
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManager;
 import com.rifluxyss.app.analyticstracking.service.AnalyticsSyncService;
-
-import org.joda.time.DateTime;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Analytics extends AppManager {
 
-    @SuppressLint("HardwareIds")
     public void insert(AnalyticsLog analyticsLog) {
         localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
     }

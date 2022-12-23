@@ -14,7 +14,6 @@ public class MyApplication extends Application {
         AppManager.getInstance().initialize(this);
 
         new Analytics().deleteBeforeDaysLog(this);
-        
 
     }
 }

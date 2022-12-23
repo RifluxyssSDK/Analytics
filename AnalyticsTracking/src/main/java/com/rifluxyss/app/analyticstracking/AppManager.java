@@ -6,9 +6,7 @@ public class AppManager {
 
     private Lazy<AnalyticsDatabase> localDatabaseLazy;
 
-    private static AppManager mAppManagerInstance;
-
-    private static Context context;
+    protected static AppManager mAppManagerInstance;
 
     public static AppManager getInstance() {
 
@@ -22,15 +20,9 @@ public class AppManager {
     }
 
     public void initialize(Context context) {
-
-        AppManager.context = context;
         localDatabaseLazy = Lazy.create(() -> AnalyticsDatabase.build(context));
     }
 
-
-    public static Context getContext() {
-        return context;
-    }
 
     public static AnalyticsDatabase localDatabase() {
         return getInstance().localDatabaseLazy.get();
