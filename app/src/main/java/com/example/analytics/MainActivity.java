@@ -1,15 +1,10 @@
 package com.example.analytics;
 
-import android.analytics.Kernel.Analytics;
+import android.analytics.dataBase.Schema;
+import android.analytics.kernel.Analytics;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -19,12 +14,15 @@ public class MainActivity extends AppCompatActivity {
 
         Analytics.init(getBaseContext(), 1);
 
-        Analytics.insert(new Pojo(80, 80, 90, 70, 85));
-        Analytics.insert(new Pojo(80, 80, 90, 70, 85));
-        Analytics.insert(new Pojo(80, 80, 90, 70, 85));
+        Analytics.logInfo(new Schema(",",""));
 
-        List<Pojo> pojoList = Analytics.get(Pojo.class);
+//        Analytics.insert(new Pojo(80, 80, 90, 70, 85));
+//        Analytics.insert(new Model("Hello"));
+//        Analytics.insert(new Pojo(80, 80, 90, 70, 85));
+//        Analytics.insert(new Pojo(80, 80, 90, 70, 85));
+//
+//        List<Pojo> pojoList = Analytics.get(Pojo.class);
+//        List<Model> modelList = Analytics.get(Model.class);
 
-        Log.d("TAG", "onCreate: ");
     }
 }
