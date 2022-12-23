@@ -11,6 +11,8 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +21,8 @@ import androidx.core.app.NotificationCompat;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManager;
 import com.rifluxyss.app.analyticstracking.service.AnalyticsSyncService;
+
+import org.joda.time.DateTime;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -61,16 +65,22 @@ public class Analytics extends AppManager {
     @SuppressLint({"NewApi", "LocalSuppress"})
     public void deleteBeforeDaysLog(Context context) {
 
+
+        ComponentName mComponentName = new ComponentName(context,AnalyticsSyncService.class);
+
+        JobInfo.Builder builder = new JobInfo.Builder(2,mComponentName);
+        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+        builder.setRequiresCharging(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            //builder.setPeriodic(15 * 60 * 1000, 5 * 60 *1000);
+            builder.setPeriodic(MINUTES.toMillis(2),MINUTES.toMillis(1));
+        } else {
+            builder.setPeriodic(MINUTES.toMillis(2));
+        }
+
         JobScheduler scheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
-
-        JobInfo profileSyncJob = new JobInfo.Builder(2,
-                new ComponentName(context, AnalyticsSyncService.class))
-                .setPeriodic(MINUTES.toMillis(2),MINUTES.toMillis(1))
-                .build();
-
-        scheduler.schedule(profileSyncJob);
+        scheduler.schedule(builder.build());
 
     }
-
 
 }

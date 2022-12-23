@@ -7,32 +7,33 @@ import android.app.NotificationManager;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.NotificationCompat;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+
+@SuppressLint("SpecifyJobSchedulerIdRange")
 public class AnalyticsSyncService extends JobService {
-
-    @SuppressLint("NewApi")
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        NotificationChannel channel = new NotificationChannel("1", "Data Sync Service", NotificationManager.IMPORTANCE_DEFAULT);
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        channel.setSound(null, null);
-        channel.setShowBadge(false);
-        notificationManager.createNotificationChannel(channel);
-
-        startForeground(1, createDefaultNotification(getApplicationContext()));
-    }
 
     @Override
     public boolean onStartJob(JobParameters params) {
         Log.e("status","check Data===> " + params.getJobId());
-        Toast.makeText(getApplicationContext(), "Job Started", Toast.LENGTH_SHORT).show();
+        for(int i = 0; i < 10; i++){
+            Toast.makeText(this, "Job Fired i : "+i, Toast.LENGTH_SHORT).show();
+            SystemClock.sleep(1000);
+        }
+        jobFinished(params, true);
         return true;
     }
 
@@ -42,19 +43,6 @@ public class AnalyticsSyncService extends JobService {
         Toast.makeText(getApplicationContext(), "Job Stopped", Toast.LENGTH_SHORT).show();
         jobFinished(params,true);
         return true;
-    }
-    private Notification createDefaultNotification(Context context)
-    {
-        return createNotification("Analytics App", false,context);
-    }
-
-    private Notification createNotification(String title, boolean showProcess,Context context)
-    {
-        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
-        bigTextStyle.setBigContentTitle(title);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Sync-Channel").setStyle(bigTextStyle)
-                .setWhen(System.currentTimeMillis()).setAutoCancel(false);
-        return builder.build();
     }
 
 }
