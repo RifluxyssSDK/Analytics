@@ -22,8 +22,7 @@ public class DataBaseService {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 100, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pendingIntent);
-//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,mCalendar.getTimeInMillis(),30 * 60 * 1000,pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,mCalendar.getTimeInMillis(),(15 * 60 * 1000),pendingIntent);
 
         Log.i("Analytics", "Init Service...");
         Log.i("Analytics", "Init Size Of DataBase " + Instance.getDao().getAllScheme().size());
