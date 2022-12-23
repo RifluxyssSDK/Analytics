@@ -14,22 +14,11 @@ public class Schema {
     @ColumnInfo(name = "ID")
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo(name = "Key")
-    private final String key;
-    @ColumnInfo(name = "Create Date")
-    private String createDate;
-    @ColumnInfo(name = "Expiry Date")
+    private String usedId;
     private String expiryDate;
-    @ColumnInfo(name = "Create Time")
-    private String createTime;
-    @ColumnInfo(name = "Data")
-    private final String data;
 
-    public Schema(String key, String data) {
-        this.key = key;
-        this.data = data;
-        setCreateTime(Util.getTime());
-        setCreateDate(Util.getDate(0));
+    public Schema(String usedId) {
+        this.usedId = usedId;
         setExpiryDate(Util.getDate(Instance.getLogExpireDayCount()));
     }
 
@@ -41,16 +30,12 @@ public class Schema {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getUsedId() {
+        return usedId;
     }
 
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setUsedId(String usedId) {
+        this.usedId = usedId;
     }
 
     public String getExpiryDate() {
@@ -59,17 +44,5 @@ public class Schema {
 
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getData() {
-        return data;
     }
 }

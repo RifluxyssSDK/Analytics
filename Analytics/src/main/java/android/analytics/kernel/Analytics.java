@@ -2,8 +2,10 @@ package android.analytics.kernel;
 
 import android.analytics.dataBase.Database;
 import android.analytics.dataBase.Schema;
-import android.analytics.service.DataBaseService;
+import android.analytics.optimizer.LogFactory;
 import android.content.Context;
+
+import java.util.List;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Analytics {
@@ -16,11 +18,14 @@ public class Analytics {
         // Initiating Database
         Instance.setDao(Database.getInstance(context).dao());
 
-        // Initiating BackgroundService
-        new DataBaseService(context);
+        LogFactory.deleteExpiryLogs();
     }
 
-    public static void logInfo(Schema schema) {
+    public static void insertLog(Schema schema) {
         Instance.getDao().insert(schema);
+    }
+
+    public static List<Schema> getLogs() {
+        return Instance.getDao().getAllScheme();
     }
 }
