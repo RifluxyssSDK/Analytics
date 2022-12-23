@@ -1,9 +1,13 @@
 package com.rifluxyss.app.analyticstracking.enitity;
 
 import android.annotation.SuppressLint;
+import android.provider.Settings;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.rifluxyss.app.analyticstracking.AppManager;
 
 @Entity
 public class AnalyticsLog extends AnalyticsBaseWithID {
@@ -26,7 +30,8 @@ public class AnalyticsLog extends AnalyticsBaseWithID {
     public String addtlDesc;
     @ColumnInfo(name = "AddtlNbr")
     public Number addtlNbr;
+    @SuppressLint("HardwareIds")
     @ColumnInfo(name = "DeviceID")
-    public String deviceID;
+    public String deviceID =  Settings.Secure.getString(AppManager.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);;
 
 }

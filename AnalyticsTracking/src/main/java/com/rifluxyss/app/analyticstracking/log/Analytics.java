@@ -1,6 +1,7 @@
 package com.rifluxyss.app.analyticstracking.log;
 
 import static android.content.Context.JOB_SCHEDULER_SERVICE;
+import static java.util.concurrent.TimeUnit.HOURS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import android.annotation.SuppressLint;
@@ -32,7 +33,6 @@ public class Analytics extends AppManager {
 
     @SuppressLint("HardwareIds")
     public void insert(AnalyticsLog analyticsLog) {
-        analyticsLog.deviceID = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
     }
 
@@ -68,21 +68,25 @@ public class Analytics extends AppManager {
     @SuppressLint({"NewApi", "LocalSuppress"})
     public void deleteBeforeDaysLog(Context context) {
 
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
+        scheduler.cancelAll();
 
         ComponentName mComponentName = new ComponentName(context,AnalyticsSyncService.class);
 
         JobInfo.Builder builder = new JobInfo.Builder(2,mComponentName);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setRequiresCharging(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //builder.setPeriodic(15 * 60 * 1000, 5 * 60 *1000);
-            builder.setPeriodic(MINUTES.toMillis(2),MINUTES.toMillis(1));
-        } else {
-            builder.setPeriodic(MINUTES.toMillis(2));
-        }
+        builder.setPersisted(true);
+        builder.setMinimumLatency(MINUTES.toMillis(1)); // wait at least
 
-        JobScheduler scheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
-        scheduler.schedule(builder.build());
+        //HOURS.toDays(1)
+        int scheduleStatus = scheduler.schedule(builder.build());
+
+        if (scheduleStatus == JobScheduler.RESULT_SUCCESS) {
+            Toast.makeText(context, "Job Schedule Successfully", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Job Schedule Failed!!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

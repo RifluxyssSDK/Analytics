@@ -1,6 +1,5 @@
 package com.rifluxyss.app.analyticstracking;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 public class AppManager {
@@ -9,7 +8,6 @@ public class AppManager {
 
     private static AppManager mAppManagerInstance;
 
-    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     public static AppManager getInstance() {
@@ -25,7 +23,7 @@ public class AppManager {
 
     public void initialize(Context context) {
 
-        this.context = context;
+        AppManager.context = context;
         localDatabaseLazy = Lazy.create(() -> AnalyticsDatabase.build(context));
     }
 
