@@ -15,14 +15,19 @@ public class Analytics {
         // Store the given data's as static variable
         Instance.setLogExpireDayCount(logExpireDayCount);
 
-        // Initiating Database
+        // Initiating database
         Instance.setDao(Database.getInstance(context).dao());
 
+        // Delete expired logs on local database
         LogFactory.deleteExpiryLogs();
     }
 
     public static void insertLog(Schema schema) {
-        Instance.getDao().insert(schema);
+        if (Instance.getDao() != null) {
+            Instance.getDao().insert(schema);
+        } else {
+            throw new NullPointerException("You have been must call 'init' method on Analytics or Null Context");
+        }
     }
 
     public static List<Schema> getLogs() {

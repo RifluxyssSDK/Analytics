@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Analytics.init(getBaseContext(),3);
+//        Analytics.init(getBaseContext(),3);
 
         Analytics.insertLog(new Schema("Mukesh"));
 

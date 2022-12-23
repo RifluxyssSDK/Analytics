@@ -9,13 +9,17 @@ public class LogFactory {
 
     public static void deleteExpiryLogs() {
 
-        Dao dao = Instance.getDao();
-        String currentDate = Util.getDate(0);
+        new Thread(() -> {
 
-        for (Schema schema : dao.getAllScheme()) {
-            if (Util.dateCompare(currentDate, schema.getExpiryDate()) <= 0) {
-                dao.delete(schema);
+            Dao dao = Instance.getDao();
+            String currentDate = Util.getDate(0);
+
+            for (Schema schema : dao.getAllScheme()) {
+                if (Util.dateCompare(currentDate, schema.getExpiryDate()) <= 0) {
+                    dao.delete(schema);
+                }
             }
-        }
+
+        }).start();
     }
 }
