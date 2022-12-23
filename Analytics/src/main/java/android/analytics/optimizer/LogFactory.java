@@ -19,7 +19,7 @@ public class LogFactory {
         new Thread(() -> {
 
             Dao dao = Instance.getDao();
-            String currentDate = Util.getDate(3);
+            String currentDate = Util.getDate(0);
 
             for (Schema schema : dao.getAllScheme()) {
                 if (Util.dateCompare(currentDate, schema.getExpiryDate()) <= 0) {

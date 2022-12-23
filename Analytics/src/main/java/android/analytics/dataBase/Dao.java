@@ -31,7 +31,7 @@ public interface Dao {
     /**
      * Delete all scheme.
      */
-    @Query("DELETE FROM `person`")
+    @Query("DELETE FROM `DataBase`")
     void deleteAllScheme();
 
     /**
@@ -39,6 +39,6 @@ public interface Dao {
      *
      * @return the all scheme
      */
-    @Query("SELECT * FROM `person`")
+    @Query("SELECT * FROM `DataBase`")
     List<Schema> getAllScheme();
 }

@@ -12,7 +12,7 @@ import androidx.room.PrimaryKey;
  * The type Schema.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue", "HardwareIds"})
-@Entity(tableName = "person")
+@Entity(tableName = "DataBase")
 public class Schema {
 
     @ColumnInfo(name = "ID")
