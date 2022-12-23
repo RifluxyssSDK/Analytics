@@ -16,9 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Analytics.init(getBaseContext(),3);
+        Analytics.init(getBaseContext(),10);
 
-        Analytics.insertLog(new Schema("Mukesh"));
+        Analytics.insertLog(new Schema("Mukesh","",243.,"qerr",",asfa","sada","zds"));
+        Analytics.insertLog(new Schema("Suresh","dsad",243.,"sadad",",faf","af","af"));
+        Analytics.insertLog(new Schema("Raju","dsd",243.,"fsdf","f,","af","af"));
 
         List<Schema> schemas = Analytics.getLogs();
 

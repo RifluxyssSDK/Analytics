@@ -13,17 +13,18 @@ public class Analytics {
     public static void init(Context context, int logExpireDayCount) {
 
         // Store the given data's as static variable
+        Instance.setContext(context);
         Instance.setLogExpireDayCount(logExpireDayCount);
 
         // Initiating database
-        Instance.setDao(Database.getInstance(context).dao());
+        Instance.setDao(Database.getInstance().dao());
 
         // Delete expired logs on local database
         LogFactory.deleteExpiryLogs();
     }
 
     public static void insertLog(Schema schema) {
-        if (Instance.getDao() != null) {
+        if (Instance.getContext() != null) {
             Instance.getDao().insert(schema);
         } else {
             throw new NullPointerException("You have been must call 'init' method on Analytics or Null Context");
