@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         Analytics.init(getBaseContext(),10);
 
-        Analytics.insertLog(new Schema("Mukesh","",243.,"qerr",",asfa","sada","zds"));
+        Analytics.insertLog(new Schema("Mukesh","gdfgd",243.,"qerr",",asfa","sada","zds"));
         Analytics.insertLog(new Schema("Suresh","dsad",243.,"sadad",",faf","af","af"));
         Analytics.insertLog(new Schema("Raju","dsd",243.,"fsdf","f,","af","af"));
 
