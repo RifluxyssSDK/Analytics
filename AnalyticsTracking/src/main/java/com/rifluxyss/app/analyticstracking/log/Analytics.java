@@ -13,6 +13,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -29,7 +30,9 @@ import java.util.List;
 
 public class Analytics extends AppManager {
 
+    @SuppressLint("HardwareIds")
     public void insert(AnalyticsLog analyticsLog) {
+        analyticsLog.deviceID = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
     }
 

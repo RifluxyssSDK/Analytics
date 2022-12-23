@@ -2,8 +2,10 @@ package com.rifluxyss.app.analyticstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -71,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
         analytics.insert(create("onDestroy","7","testing Log onDestroy",7.0f,11));
     }
 
-    public AnalyticsLog create(String message, String eventNumber, String description, Number additionalNumber,Number routeNbr)
+    @SuppressLint("HardwareIds")
+    public AnalyticsLog create(String message, String eventNumber, String description, Number additionalNumber, Number routeNbr)
     {
         //First part in AddtlDesc is how long the app has been up running
         AnalyticsLog logEntity = new AnalyticsLog();
@@ -84,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
         logEntity.eventNbr = eventNumber;
         logEntity.addtlDesc = description;
         logEntity.addtlNbr = additionalNumber;
-        //Session could be not ready when saving to database, make sure to set those fields when uploading
-        logEntity.deviceID = "";
         return logEntity;
     }
 
