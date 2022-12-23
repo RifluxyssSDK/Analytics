@@ -11,8 +11,17 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * The type Util.
+ */
 public class Util {
 
+    /**
+     * Gets date.
+     *
+     * @param addExtraDays the add extra days
+     * @return the date
+     */
     public static String getDate(int addExtraDays) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, addExtraDays);
@@ -21,10 +30,22 @@ public class Util {
         return simpleDateFormat.format(date);
     }
 
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
     public static String getTime() {
         return (String) DateFormat.format("HH:mm aaa",Calendar.getInstance().getTime());
     }
 
+    /**
+     * Date compare int.
+     *
+     * @param currentDate the current date
+     * @param expiryDate  the expiry date
+     * @return the int
+     */
     public static int dateCompare(String currentDate, String expiryDate) {
 
         try {
