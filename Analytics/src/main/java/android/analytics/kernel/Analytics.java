@@ -22,7 +22,7 @@ public class Analytics {
     public static void init(Context context, int logExpireDayCount) {
 
         // Store the given data's as static variable
-        Instance.setContext(context);
+        Instance.setContext(context.getApplicationContext());
         Instance.setLogExpireDayCount(logExpireDayCount);
 
         // Initiating database
