@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Analytics analytics = new Analytics();
+    Analytics analytics = new Analytics(getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,12 +12,6 @@ import java.util.List;
 @Dao
 public interface AnalyticsLogDao {
 
-    @Query("DELETE FROM AnalyticsLog WHERE eventTime < :eventTime")
-    int deleteAfter(LocalDateTime eventTime);
-
-    @Query("DELETE FROM AnalyticsLog WHERE eventTime > :eventTime")
-    int deleteBefore(LocalDateTime eventTime);
-
     @Insert
     void insert(AnalyticsLog log);
 
@@ -30,11 +24,17 @@ public interface AnalyticsLogDao {
     @Query("SELECT * FROM AnalyticsLog WHERE eventTime <= :eventTime")
     List<AnalyticsLog> readBefore(LocalDateTime eventTime);
 
-    @Query("SELECT * FROM AnalyticsLog WHERE eventTime >= :eventTime")
-    int readAfterDateCount(LocalDateTime eventTime);
-
     @Query("SELECT * FROM AnalyticsLog WHERE eventTime <= :eventTime")
     int readBeforeDateCount(LocalDateTime eventTime);
+
+    @Query("DELETE FROM AnalyticsLog WHERE Day = :day")
+    int deleteBefore(Number day);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE Day = :day")
+    List<AnalyticsLog> readBeforeDateCount(Number day);
+
+    @Query("DELETE FROM AnalyticsLog WHERE eventTime > :eventTime")
+    int deleteBefore(LocalDateTime eventTime);
 
     @Query("SELECT * FROM AnalyticsLog")
     List<AnalyticsLog> getAll();

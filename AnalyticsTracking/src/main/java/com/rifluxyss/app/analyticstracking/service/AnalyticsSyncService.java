@@ -7,16 +7,17 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.rifluxyss.app.analyticstracking.log.Analytics;
+
 @SuppressLint("SpecifyJobSchedulerIdRange")
 public class AnalyticsSyncService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Log.e("status","check Data===> " + params.getJobId());
-        for(int i = 0; i < 10; i++){
-            Toast.makeText(this, "Job Fired i : "+i, Toast.LENGTH_SHORT).show();
-            SystemClock.sleep(1000);
-        }
+
+        Toast.makeText(this, "Job Fired ===> : " + params.getJobId(), Toast.LENGTH_LONG).show();
+        new Analytics(getApplicationContext()).deleteBeforeDayLog();
+
         jobFinished(params, true);
         return true;
     }

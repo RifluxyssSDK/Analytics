@@ -1,6 +1,7 @@
 package com.rifluxyss.app.analyticstracking.log;
 
 import static android.content.Context.JOB_SCHEDULER_SERVICE;
+import static java.util.concurrent.TimeUnit.DAYS;
 import static java.util.concurrent.TimeUnit.MINUTES;
 
 import android.annotation.SuppressLint;
@@ -8,8 +9,12 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
+import androidx.lifecycle.LiveData;
+
+import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManager;
 import com.rifluxyss.app.analyticstracking.service.AnalyticsSyncService;
@@ -18,6 +23,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Analytics extends AppManager {
+
+    private Context mContext;
+
+    public Analytics(Context mContext) {
+        this.mContext = mContext;
+    }
 
     public void insert(AnalyticsLog analyticsLog) {
         localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
@@ -43,37 +54,36 @@ public class Analytics extends AppManager {
         return localDatabase().analyticsLogDaoLogDao().deleteBefore(localDateTime);
     }
 
-    public int deleteAfterDateLog(LocalDateTime localDateTime) {
-        return localDatabase().analyticsLogDaoLogDao().deleteAfter(localDateTime);
-    }
-
     public void deleteAllLog() {
         localDatabase().analyticsLogDaoLogDao().deleteAllLog();
     }
 
+    @SuppressLint("NewApi")
+    public void  deleteBeforeDayLog() {
 
-    @SuppressLint({"NewApi", "LocalSuppress"})
+        int analyticsLogs = AppManager.localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
+        Log.e("status","check Data ===> " + analyticsLogs);
+
+    }
+
+
     public void deleteBeforeDaysLog(Context context) {
 
-        JobScheduler scheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
-        scheduler.cancelAll();
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
+        jobScheduler.cancelAll();
 
-        ComponentName mComponentName = new ComponentName(context,AnalyticsSyncService.class);
+        ComponentName mComponentName = new ComponentName(context, AnalyticsSyncService.class);
 
-        JobInfo.Builder builder = new JobInfo.Builder(2,mComponentName);
+        JobInfo.Builder builder = new JobInfo.Builder(2, mComponentName);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setRequiresCharging(true);
         builder.setPersisted(true);
-        builder.setMinimumLatency(MINUTES.toMillis(1)); // wait at least
+        builder.setMinimumLatency(DAYS.toDays(Utils.DAY_SCALE)); // wait at least 1 Days
 
-        //HOURS.toDays(1)
-        int scheduleStatus = scheduler.schedule(builder.build());
+        int scheduleStatus = jobScheduler.schedule(builder.build());
 
-        if (scheduleStatus == JobScheduler.RESULT_SUCCESS) {
-            Toast.makeText(context, "Job Schedule Successfully", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "Job Schedule Failed!!", Toast.LENGTH_SHORT).show();
-        }
+        String message = scheduleStatus == JobScheduler.RESULT_SUCCESS ? "Job Schedule Successfully" : "Job Schedule Failed!!";
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
     }
 

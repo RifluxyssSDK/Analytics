@@ -12,6 +12,14 @@ public class Utils {
 
     public static String EMPTY = "";
 
+    public static final long NANO_SCALE   = 1L;
+    public static final long MICRO_SCALE  = 1000L * NANO_SCALE;
+    public static final long MILLI_SCALE  = 1000L * MICRO_SCALE;
+    public static final long SECOND_SCALE = 1000L * MILLI_SCALE;
+    public static final long MINUTE_SCALE = 60L * SECOND_SCALE;
+    public static final long HOUR_SCALE   = 60L * MINUTE_SCALE;
+    public static final long DAY_SCALE    = 24L * HOUR_SCALE;
+
     @SuppressLint("NewApi")
     public static LocalDateTime fromISODateTimeString(String value) {
         String valueDate = value != null ? value.trim() : EMPTY;
