@@ -2,20 +2,14 @@ package com.rifluxyss.app.analyticstracking.log;
 
 import static android.content.Context.JOB_SCHEDULER_SERVICE;
 import static java.util.concurrent.TimeUnit.DAYS;
-import static java.util.concurrent.TimeUnit.MINUTES;
 
 import android.annotation.SuppressLint;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.os.Build;
-import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
-import androidx.lifecycle.LiveData;
 
 import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.SignupPojo;
@@ -24,7 +18,6 @@ import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManager;
 import com.rifluxyss.app.analyticstracking.service.AnalyticsSyncService;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -57,7 +50,6 @@ public class Analytics extends AppManager {
         return localDatabase().analyticsLogDaoLogDao().deleteBefore(localDateTime);
     }
 
-
     public void deleteAllLog() {
         localDatabase().analyticsLogDaoLogDao().deleteAllLog();
     }
@@ -69,10 +61,11 @@ public class Analytics extends AppManager {
 
             int analyticsLogs = AppManager.localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
 
-            SignupPojo signupPojo = new SignupPojo("123456", "Kishanth");
-            boolean fileCreated = new Utils().create(new Gson().toJson(signupPojo),mContext);
+            SignupPojo signupPojo = new SignupPojo("123456", "");
+            boolean fileCreated = new Utils().create(new Gson().toJson(signupPojo), mContext);
 
             Log.e("status", "check fileCreated ===> " + fileCreated);
+
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
