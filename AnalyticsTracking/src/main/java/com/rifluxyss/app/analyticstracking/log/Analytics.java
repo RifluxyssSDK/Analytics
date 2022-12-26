@@ -9,9 +9,12 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 
 import com.google.gson.Gson;
@@ -28,17 +31,13 @@ import java.util.List;
 
 public class Analytics extends AppManager {
 
-    private Context mContext;
+    private final Context mContext;
 
     public Analytics(Context mContext) {
         this.mContext = mContext;
     }
 
     public void insert(AnalyticsLog analyticsLog) {
-        localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
-    }
-
-    public void insertLog(List<AnalyticsLog> analyticsLog) {
         localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
     }
 
@@ -64,15 +63,15 @@ public class Analytics extends AppManager {
     }
 
     @SuppressLint("NewApi")
-    public void  deleteBeforeDayLog() {
+    public void deleteBeforeDayLog() throws IOException {
 
         int analyticsLogs = AppManager.localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
-        Log.e("status","check Data ===> " + analyticsLogs);
+        Log.e("status", "check Data ===> " + analyticsLogs);
 
-        SignupPojo signupPojo = new SignupPojo("123456","Kishanth");
-        boolean fileCreated = create(new Gson().toJson(signupPojo));
+        SignupPojo signupPojo = new SignupPojo("123456", "Kishanth");
+        boolean fileCreated = new Utils().create(new Gson().toJson(signupPojo),mContext);
 
-        Log.e("status","check fileCreated ===> " + fileCreated);
+        Log.e("status", "check fileCreated ===> " + fileCreated);
 
     }
 
@@ -88,24 +87,12 @@ public class Analytics extends AppManager {
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setRequiresCharging(true);
         builder.setPersisted(true);
-        builder.setMinimumLatency(DAYS.toDays(Utils.DAY_SCALE)); // wait at least 4 Days
+        builder.setMinimumLatency(DAYS.toDays(Utils.DAY_SCALE)); // 4 Days duration
 
         int scheduleStatus = jobScheduler.schedule(builder.build());
 
         String message = scheduleStatus == JobScheduler.RESULT_SUCCESS ? "Job Schedule Successfully" : "Job Schedule Failed!!";
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
-
-    }
-
-    private boolean create(String jsonString){
-        try {
-            FileOutputStream fos = mContext.openFileOutput("jobschedule.json",Context.MODE_PRIVATE);
-            fos.write(jsonString.getBytes());
-            fos.close();
-            return true;
-        } catch (IOException fileNotFound) {
-            return false;
-        }
 
     }
 

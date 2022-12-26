@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 
+import java.io.IOException;
+
 
 @SuppressLint("SpecifyJobSchedulerIdRange")
 public class AnalyticsSyncService extends JobService {
@@ -16,7 +18,11 @@ public class AnalyticsSyncService extends JobService {
     public boolean onStartJob(JobParameters params) {
 
         Toast.makeText(this, "Job Fired ===> : " + params.getJobId(), Toast.LENGTH_LONG).show();
-        new Analytics(getApplicationContext()).deleteBeforeDayLog();
+        try {
+            new Analytics(getApplicationContext()).deleteBeforeDayLog();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         jobFinished(params, true);
         return true;

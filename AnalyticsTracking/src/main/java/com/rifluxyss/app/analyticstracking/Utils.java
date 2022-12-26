@@ -1,9 +1,12 @@
 package com.rifluxyss.app.analyticstracking;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,5 +37,13 @@ public class Utils {
     public static String deviceModelCapitalized(String modelName) {
         return modelName.substring(0, 1).toUpperCase() + modelName.substring(1).toLowerCase();
     }
+
+    public boolean create(String jsonString, Context mContext) throws IOException {
+        FileOutputStream fos = mContext.openFileOutput("jobSchedule.json", Context.MODE_PRIVATE);
+        fos.write(jsonString.getBytes());
+        fos.close();
+        return true;
+    }
+
 
 }
