@@ -6,33 +6,33 @@ import androidx.room.TypeConverter;
 public class NumberConverters {
 
     @TypeConverter
-    public static int fromNumberValueInt(Number value) {
-        return value.intValue();
-    }
+    public static int fromNumberValue(Number value) {
 
-    @TypeConverter
-    public static double fromNumberValueDouble(Number value) {
-        return value.doubleValue();
-    }
+        if (value instanceof Double) {
 
-    @TypeConverter
-    public static long fromNumberValueLong(Number value) {
-        return value.longValue();
-    }
+            return (int) value.doubleValue();
 
-    @TypeConverter
-    public static float fromNumberValueFloat(Number value) {
-        return value.floatValue();
-    }
+        } else if (value instanceof Long) {
 
-    @TypeConverter
-    public static byte fromNumberValueByte(Number value) {
-        return value.byteValue();
-    }
+            return (int) value.longValue();
 
-    @TypeConverter
-    public static short fromNumberValueShort(Number value) {
-        return value.shortValue();
+        } else if (value instanceof Float) {
+
+            return (int) value.floatValue();
+
+        } else if (value instanceof  Byte) {
+
+            return value.byteValue();
+
+        } else if (value instanceof Short) {
+
+            return value.shortValue();
+
+        } else {
+
+            return value.intValue();
+        }
+
     }
 
 }

@@ -24,28 +24,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        analytics.insert(create("onCreate","1","testing Log",1.0f,11));
+        analytics.insert(create("onCreate","1","testing Log",1.10f,11));
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
 
-        analytics.insert(create("onRestart","4","testing Log Restart",4.0f,11));
+        analytics.insert(create("onRestart","4","testing Log Restart",4.0,11));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        analytics.insert(create("onstart","2","testing Log Start",2.0f,11));
+        analytics.insert(create("onstart","2","testing Log Start",2.10f,11));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        analytics.insert(create("onResume","3","testing Log onResume",3.0f,11));
+        analytics.insert(create("onResume","3","testing Log onResume",3.10f,11));
     }
 
     @Override

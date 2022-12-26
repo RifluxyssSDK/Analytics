@@ -5,8 +5,7 @@ import androidx.room.TypeConverter;
 import com.rifluxyss.app.analyticstracking.Utils;
 import java.time.LocalDateTime;
 
-public class DateTimeConverter
-{
+public class DateTimeConverter {
 
     @TypeConverter
     public static LocalDateTime fromDateTimeString(String value) {

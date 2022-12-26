@@ -18,13 +18,13 @@ public class AnalyticsBaseWithID {
 
     @SuppressLint("NewApi")
     @ColumnInfo(name = "Day")
-    public Number day = LocalDateTime.now().getDayOfWeek().getValue() - 1;
+    public Number day = LocalDateTime.now().getDayOfWeek().getValue();
 
     @ColumnInfo(name = "DeviceModel")
     public String deviceModel = Utils.deviceModelCapitalized(Build.MANUFACTURER) + " " + Build.MODEL;
 
     @ColumnInfo(name = "DeviceOS")
-    public String deviceOS = Build.VERSION.CODENAME;
+    public String deviceOS = Build.VERSION.CODENAME.substring(0,1);
 
 
 }
