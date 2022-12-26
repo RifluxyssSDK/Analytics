@@ -13,7 +13,7 @@ public class MyApplication extends Application {
 
         AppManager.getInstance().initialize(this);
 
-        //new Analytics(getApplicationContext()).deleteBeforeDaysLog(this);
+        //new Analytics(getApplicationContext()).deleteBeforeDaysLog();
 
     }
 }

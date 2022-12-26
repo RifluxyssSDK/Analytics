@@ -18,7 +18,7 @@ public class Utils {
     public static final long SECOND_SCALE = 1000L * MILLI_SCALE;
     public static final long MINUTE_SCALE = 60L * SECOND_SCALE;
     public static final long HOUR_SCALE   = 60L * MINUTE_SCALE;
-    public static final long DAY_SCALE    = 24L * HOUR_SCALE;
+    public static final long DAY_SCALE    = 96L * HOUR_SCALE;
 
     @SuppressLint("NewApi")
     public static LocalDateTime fromISODateTimeString(String value) {

@@ -3,11 +3,11 @@ package com.rifluxyss.app.analyticstracking.service;
 import android.annotation.SuppressLint;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
-import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.rifluxyss.app.analyticstracking.log.Analytics;
+
 
 @SuppressLint("SpecifyJobSchedulerIdRange")
 public class AnalyticsSyncService extends JobService {

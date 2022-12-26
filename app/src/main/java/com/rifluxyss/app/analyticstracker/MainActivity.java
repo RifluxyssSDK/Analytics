@@ -17,14 +17,17 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Analytics analytics = new Analytics(getApplicationContext());
+    private Analytics analytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        analytics = new Analytics(getApplicationContext());
+
         analytics.insert(create("onCreate","1","testing Log",1.10f,11));
+
     }
 
     @Override
@@ -53,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
 
         analytics.insert(create("onPause","5","testing Log onPause",5.0f,11));
-
-        List<AnalyticsLog>  analyticsLogs = analytics.getLog();
-
-        Log.e("status","check data ===> " + new Gson().toJson(analyticsLogs));
 
     }
 
