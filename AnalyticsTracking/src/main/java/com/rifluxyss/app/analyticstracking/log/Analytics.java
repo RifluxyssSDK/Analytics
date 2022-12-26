@@ -63,15 +63,20 @@ public class Analytics extends AppManager {
     }
 
     @SuppressLint("NewApi")
-    public void deleteBeforeDayLog() throws IOException {
+    public void deleteBeforeDayLog() {
 
-        int analyticsLogs = AppManager.localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
-        Log.e("status", "check Data ===> " + analyticsLogs);
+        try {
 
-        SignupPojo signupPojo = new SignupPojo("123456", "Kishanth");
-        boolean fileCreated = new Utils().create(new Gson().toJson(signupPojo),mContext);
+            int analyticsLogs = AppManager.localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
 
-        Log.e("status", "check fileCreated ===> " + fileCreated);
+            SignupPojo signupPojo = new SignupPojo("123456", "Kishanth");
+            boolean fileCreated = new Utils().create(new Gson().toJson(signupPojo),mContext);
+
+            Log.e("status", "check fileCreated ===> " + fileCreated);
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
 
     }
 
