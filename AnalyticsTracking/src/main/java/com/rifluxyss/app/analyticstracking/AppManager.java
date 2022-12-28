@@ -8,6 +8,8 @@ public class AppManager {
 
     protected static AppManager mAppManagerInstance;
 
+    protected static Context context;
+
     public static AppManager getInstance() {
 
         if (mAppManagerInstance == null) {
@@ -20,7 +22,12 @@ public class AppManager {
     }
 
     public void initialize(Context context) {
+        AppManager.context = context;
         localDatabaseLazy = Lazy.create(() -> AnalyticsDatabase.build(context));
+    }
+
+    public static Context getContext() {
+        return context;
     }
 
 

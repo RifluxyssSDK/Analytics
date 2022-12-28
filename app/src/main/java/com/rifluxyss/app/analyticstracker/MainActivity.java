@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.AppManager;
+import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        analytics = new Analytics(getApplicationContext());
+        analytics = new Analytics();
 
         analytics.insert(create("onCreate","1","testing Log",1.10f,11));
 
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         logEntity.eventNbr = eventNumber;
         logEntity.addtlDesc = description;
         logEntity.addtlNbr = additionalNumber;
-        logEntity.deviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         return logEntity;
     }
 

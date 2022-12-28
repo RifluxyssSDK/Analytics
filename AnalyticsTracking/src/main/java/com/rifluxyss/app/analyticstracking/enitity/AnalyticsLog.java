@@ -8,6 +8,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.rifluxyss.app.analyticstracking.AppManager;
+import com.rifluxyss.app.analyticstracking.Utils;
 
 @Entity
 public class AnalyticsLog extends AnalyticsBaseWithID {
@@ -30,8 +31,5 @@ public class AnalyticsLog extends AnalyticsBaseWithID {
     public String addtlDesc;
     @ColumnInfo(name = "AddtlNbr")
     public Number addtlNbr;
-    @SuppressLint("HardwareIds")
-    @ColumnInfo(name = "DeviceID")
-    public String deviceID;
 
 }

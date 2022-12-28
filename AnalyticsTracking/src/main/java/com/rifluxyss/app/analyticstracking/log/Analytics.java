@@ -24,10 +24,13 @@ import java.util.List;
 
 public class Analytics extends AppManager {
 
-    private final Context mContext;
+    private Context mContext;
 
     public Analytics(Context mContext) {
         this.mContext = mContext;
+    }
+
+    public Analytics() {
     }
 
     public void insert(AnalyticsLog analyticsLog) {
@@ -85,7 +88,7 @@ public class Analytics extends AppManager {
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setRequiresCharging(true);
         builder.setPersisted(true);
-        builder.setMinimumLatency(DAYS.toDays(Utils.DAY_SCALE)); // 4 Days duration
+        builder.setMinimumLatency(DAYS.toDays(Utils.HOUR_SCALE)); // 4 Days duration
 
         int scheduleStatus = jobScheduler.schedule(builder.build());
 
