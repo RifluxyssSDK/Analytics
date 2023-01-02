@@ -78,7 +78,7 @@ public class Analytics extends AppManager {
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
             builder.setRequiresCharging(true);
             builder.setPersisted(true);
-            builder.setMinimumLatency(Utils.MINUTE_SCALE); // 4 Days duration
+            builder.setMinimumLatency(Utils.MINUTE_MILLIS); // 4 Days duration
 
             int scheduleStatus = jobScheduler.schedule(builder.build());
 

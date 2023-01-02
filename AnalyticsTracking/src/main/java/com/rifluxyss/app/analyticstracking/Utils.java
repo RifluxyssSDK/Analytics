@@ -24,10 +24,10 @@ public class Utils {
 
     public static String EMPTY = "";
 
-    public static final long SECOND_SCALE = 1000;
-    public static final long MINUTE_SCALE = 60 * SECOND_SCALE;
-    public static final long HOUR_SCALE   = 60 * MINUTE_SCALE;
-    public static final long DAY_SCALE    = 24 * HOUR_SCALE;
+    public static final long SECOND_MILLIS = 1000;
+    public static final long MINUTE_MILLIS = 180 * SECOND_MILLIS;
+    public static final long HOUR_MILLIS   = 60 * MINUTE_MILLIS;
+    public static final long DAY_MILLIS    = 24 * HOUR_MILLIS;
 
 
     public static LocalDateTime fromISODateTimeString(String value) {
