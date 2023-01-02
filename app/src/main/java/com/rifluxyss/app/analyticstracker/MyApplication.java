@@ -5,6 +5,8 @@ import android.app.Application;
 import com.rifluxyss.app.analyticstracking.AppManager;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 
+import java.io.IOException;
+
 public class MyApplication extends Application {
 
     @Override
@@ -13,7 +15,11 @@ public class MyApplication extends Application {
 
         AppManager.getInstance().initialize(this);
 
-        //new Analytics(getApplicationContext()).deleteBeforeDaysLog();
+        try {
+            new Analytics(getApplicationContext()).deleteBeforeDaysLog();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

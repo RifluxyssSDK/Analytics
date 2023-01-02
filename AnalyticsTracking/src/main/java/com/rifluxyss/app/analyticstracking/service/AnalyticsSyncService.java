@@ -29,8 +29,6 @@ public class AnalyticsSyncService extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        Log.e("status","check Data Stop ===> " + params.getJobId());
-        Toast.makeText(getApplicationContext(), "Job Stopped", Toast.LENGTH_SHORT).show();
         return true;
     }
 

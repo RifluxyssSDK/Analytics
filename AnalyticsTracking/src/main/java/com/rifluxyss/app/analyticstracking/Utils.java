@@ -4,15 +4,14 @@ import static android.content.Context.WIFI_SERVICE;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.text.TextUtils;
-import android.text.format.Formatter;
+
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
@@ -25,13 +24,10 @@ public class Utils {
 
     public static String EMPTY = "";
 
-    public static final long NANO_SCALE   = 1L;
-    public static final long MICRO_SCALE  = 1000L * NANO_SCALE;
-    public static final long MILLI_SCALE  = 1000L * MICRO_SCALE;
-    public static final long SECOND_SCALE = 1000L * MILLI_SCALE;
-    public static final long MINUTE_SCALE = 60L * SECOND_SCALE;
-    public static final long HOUR_SCALE   = 60L * MINUTE_SCALE;
-    public static final long DAY_SCALE    = 96L * HOUR_SCALE;
+    public static final long SECOND_SCALE = 1000;
+    public static final long MINUTE_SCALE = 60 * SECOND_SCALE;
+    public static final long HOUR_SCALE   = 60 * MINUTE_SCALE;
+    public static final long DAY_SCALE    = 24 * HOUR_SCALE;
 
 
     public static LocalDateTime fromISODateTimeString(String value) {
@@ -48,20 +44,23 @@ public class Utils {
         return modelName.substring(0, 1).toUpperCase() + modelName.substring(1).toLowerCase();
     }
 
-    public boolean create(String jsonString, Context mContext) throws IOException {
+    public void create(Context mContext) throws IOException {
+        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
+        AnalyticsData analyticsData = new AnalyticsData(LocalDateTime.now().format(sdf), LocalDateTime.now().getDayOfWeek().getValue());
         FileOutputStream fos = mContext.openFileOutput("jobSchedule.json", Context.MODE_PRIVATE);
-        fos.write(jsonString.getBytes());
+        fos.write(new Gson().toJson(analyticsData).getBytes());
         fos.close();
-        return true;
     }
 
-    public boolean isFilePresent(String filePath) {
-        File file = new File(filePath);
+    public boolean isFilePresent(String fileName) {
+        String path = new File(AppManager.getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
+        File file = new File(path);
         return file.exists();
     }
 
-    public boolean isDeleteFile(String filePath) {
-        File file = new File(filePath);
+    public boolean isDeleteFile(String fileName) {
+        String path =  new File(AppManager.getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
+        File file = new File(path);
         return file.delete();
     }
 
