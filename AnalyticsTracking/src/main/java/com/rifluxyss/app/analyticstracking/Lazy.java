@@ -10,7 +10,6 @@ import java.util.function.Supplier;
 public class Lazy<T> implements Supplier
 {
     private final Supplier<T> supplier;
-    private String tag;
     //May be used to identify this instance
     private volatile T value;
 
@@ -20,13 +19,11 @@ public class Lazy<T> implements Supplier
     }
 
     public static <T> Lazy create(@NonNull Supplier<T> supplier) {
-        return create(Utils.EMPTY, supplier);
+        return created(supplier);
     }
 
-    public static <T> Lazy create(String tag, @NonNull Supplier<T> supplier) {
-        Lazy<T> lazy = new Lazy<>(supplier);
-        lazy.tag = tag;
-        return lazy;
+    public static <T> Lazy created(@NonNull Supplier<T> supplier) {
+        return new Lazy<>(supplier);
     }
 
     @Override
@@ -48,8 +45,4 @@ public class Lazy<T> implements Supplier
         return localRef;
     }
 
-    public String tag()
-    {
-        return tag;
-    }
 }

@@ -2,7 +2,6 @@ package com.rifluxyss.app.analyticstracking.service;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.work.Configuration;

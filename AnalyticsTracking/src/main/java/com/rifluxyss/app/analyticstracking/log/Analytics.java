@@ -7,10 +7,8 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
@@ -79,7 +77,6 @@ public class Analytics extends AppManagerSingleton {
 
         }
 
-        new Utils().create(mContext,Utils.DAY_MILLIS);
     }
 
 }

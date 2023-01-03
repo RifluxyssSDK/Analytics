@@ -18,8 +18,7 @@ public abstract class AnalyticsDatabase extends MainDatabase {
 
         return Room.databaseBuilder(context, AnalyticsDatabase.class, "analytics-data.db").allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
-                .fallbackToDestructiveMigrationOnDowngrade()
-                .fallbackToDestructiveMigrationFrom(1,2,3,4).build();
+                .fallbackToDestructiveMigrationOnDowngrade().build();
 
     }
 }
