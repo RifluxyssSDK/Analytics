@@ -18,14 +18,16 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 @SuppressLint("NewApi")
 public class Utils {
 
     public static String EMPTY = "";
+    public static String fileName = "jobSchedule.json";
 
     public static final long SECOND_MILLIS = 1000;
-    public static final long MINUTE_MILLIS = 180 * SECOND_MILLIS;
+    public static final long MINUTE_MILLIS = 60 * SECOND_MILLIS;
     public static final long HOUR_MILLIS   = 60 * MINUTE_MILLIS;
     public static final long DAY_MILLIS    = 24 * HOUR_MILLIS;
 
@@ -44,29 +46,28 @@ public class Utils {
         return modelName.substring(0, 1).toUpperCase() + modelName.substring(1).toLowerCase();
     }
 
-    public void create(Context mContext) throws IOException {
+    public void create(Context mContext,long minutesMillis) throws IOException {
         DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
-        AnalyticsData analyticsData = new AnalyticsData(LocalDateTime.now().format(sdf), LocalDateTime.now().getDayOfWeek().getValue());
-        FileOutputStream fos = mContext.openFileOutput("jobSchedule.json", Context.MODE_PRIVATE);
+        AnalyticsData analyticsData = new AnalyticsData(LocalDateTime.now().format(sdf), LocalDateTime.now().getDayOfWeek().getValue(), getMillis(minutesMillis));
+        FileOutputStream fos = mContext.openFileOutput(fileName, Context.MODE_PRIVATE);
         fos.write(new Gson().toJson(analyticsData).getBytes());
         fos.close();
     }
 
     public boolean isFilePresent(String fileName) {
-        String path = new File(AppManager.getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
+        String path = new File(AppManagerSingleton.getInstance().getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
         File file = new File(path);
         return file.exists();
     }
 
-    public boolean isDeleteFile(String fileName) {
-        String path =  new File(AppManager.getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
-        File file = new File(path);
-        return file.delete();
+    public void isDeleteFile(String fileName) {
+        String path =  new File(AppManagerSingleton.getInstance().getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
+        new File(path).delete();
     }
 
     public String getIPAddress() {
 
-        WifiManager wifiMgr = (WifiManager)AppManager.getContext().getApplicationContext().getSystemService(WIFI_SERVICE);
+        WifiManager wifiMgr = (WifiManager)AppManagerSingleton.getInstance().getContext().getApplicationContext().getSystemService(WIFI_SERVICE);
         int ipAddress = wifiMgr.getConnectionInfo().getIpAddress();
         byte[] buffer = ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(ipAddress).array();
 
@@ -76,6 +77,16 @@ public class Utils {
         }
 
         return "";
+
+    }
+
+    private String getMillis(long duration) {
+
+        long days = TimeUnit.MILLISECONDS.toDays(duration);
+        long hours = TimeUnit.MILLISECONDS.toHours(duration);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+        return days != 0 ? days + " Days" : hours != 0 ? hours  + " Hours" : minutes != 0 ? minutes + " Minutes" : seconds + " Seconds";
 
     }
 

@@ -5,9 +5,8 @@ import android.os.Build;
 import android.provider.Settings;
 
 import androidx.room.ColumnInfo;
-import androidx.room.PrimaryKey;
 
-import com.rifluxyss.app.analyticstracking.AppManager;
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
 import com.rifluxyss.app.analyticstracking.Utils;
 
 import java.time.LocalDateTime;
@@ -16,7 +15,7 @@ public class AnalyticsBaseWithID {
 
     @SuppressLint("HardwareIds")
     @ColumnInfo(name = "DeviceID")
-    public String deviceID = Settings.Secure.getString(AppManager.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+    public String deviceID = Settings.Secure.getString(AppManagerSingleton.getInstance().getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
     @ColumnInfo(name = "IPAddress")
     public String ipAddress = new Utils().getIPAddress();

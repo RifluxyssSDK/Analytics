@@ -9,18 +9,16 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.rifluxyss.app.analyticstracking.AnalyticsData;
 import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
-import com.rifluxyss.app.analyticstracking.AppManager;
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
 import com.rifluxyss.app.analyticstracking.service.AnalyticsSyncService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Analytics extends AppManager {
+public class Analytics extends AppManagerSingleton {
 
     private Context mContext;
 
@@ -58,21 +56,21 @@ public class Analytics extends AppManager {
     @SuppressLint("NewApi")
     public void deleteBeforeDayLog() {
 
-        int analyticsLogs = AppManager.localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
+        int analyticsLogs = localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
 
-        new Utils().isDeleteFile("jobSchedule.json");
+        new Utils().isDeleteFile(Utils.fileName);
     }
 
-    @SuppressLint("NewApi")
+
     public void deleteBeforeDaysLog() throws IOException {
 
-        boolean isExists = new Utils().isFilePresent("jobSchedule.json");
+        boolean isExists = new Utils().isFilePresent(Utils.fileName);
         if (!isExists) {
 
-            JobScheduler jobScheduler = (JobScheduler) AppManager.getContext().getSystemService(JOB_SCHEDULER_SERVICE);
+            JobScheduler jobScheduler = (JobScheduler) AppManagerSingleton.getInstance().getContext().getSystemService(JOB_SCHEDULER_SERVICE);
             jobScheduler.cancelAll();
 
-            ComponentName mComponentName = new ComponentName(AppManager.getContext(), AnalyticsSyncService.class);
+            ComponentName mComponentName = new ComponentName(AppManagerSingleton.getInstance().getContext(), AnalyticsSyncService.class);
 
             JobInfo.Builder builder = new JobInfo.Builder(2, mComponentName);
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
@@ -83,9 +81,9 @@ public class Analytics extends AppManager {
             int scheduleStatus = jobScheduler.schedule(builder.build());
 
             String message = scheduleStatus == JobScheduler.RESULT_SUCCESS ? "Job Schedule Successfully" : "Job Schedule Failed!!";
-            Toast.makeText(AppManager.getContext(), message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AppManagerSingleton.getInstance().getContext(), message, Toast.LENGTH_SHORT).show();
 
-            new Utils().create(mContext);
+            new Utils().create(mContext,Utils.MINUTE_MILLIS);
 
         }
 

@@ -1,24 +1,12 @@
 package com.rifluxyss.app.analyticstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 
-import com.google.gson.Gson;
-import com.rifluxyss.app.analyticstracking.AppManager;
-import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

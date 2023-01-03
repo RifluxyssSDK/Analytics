@@ -8,8 +8,11 @@ public class AnalyticsData {
 
     public final Number day;
 
-    public AnalyticsData(String localDateTime, Number day) {
+    public String duration;
+
+    public AnalyticsData(String localDateTime, Number day,String duration) {
         this.localDateTime = localDateTime;
         this.day = day;
+        this.duration = duration;
     }
 }

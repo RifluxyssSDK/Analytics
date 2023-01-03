@@ -1,14 +1,10 @@
 package com.rifluxyss.app.analyticstracking.enitity;
 
 import android.annotation.SuppressLint;
-import android.provider.Settings;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.rifluxyss.app.analyticstracking.AppManager;
-import com.rifluxyss.app.analyticstracking.Utils;
 
 @Entity
 public class AnalyticsLog extends AnalyticsBaseWithID {

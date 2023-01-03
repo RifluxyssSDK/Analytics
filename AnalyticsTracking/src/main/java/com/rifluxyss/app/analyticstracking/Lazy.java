@@ -19,21 +19,19 @@ public class Lazy<T> implements Supplier
         this.supplier = supplier;
     }
 
-    public static <T> Lazy create(@NonNull Supplier<T> supplier)
-    {
+    public static <T> Lazy create(@NonNull Supplier<T> supplier) {
         return create(Utils.EMPTY, supplier);
     }
 
     public static <T> Lazy create(String tag, @NonNull Supplier<T> supplier) {
-
         Lazy<T> lazy = new Lazy<>(supplier);
         lazy.tag = tag;
         return lazy;
     }
 
     @Override
-    public T get()
-    {
+    public T get() {
+
         //make sure it is thread safe with double-checked locking
         T localRef = value;
         if (localRef == null)
