@@ -21,7 +21,7 @@ public class AnalyticsSyncService extends JobService {
     public boolean onStartJob(JobParameters params) {
 
         Toast.makeText(this, "Job Fired ===> : " + params.getJobId(), Toast.LENGTH_LONG).show();
-        new Analytics(getApplicationContext()).deleteBeforeDayLog();
+        new Analytics().deleteBeforeDayLog();
 
         jobFinished(params, true);
         return true;

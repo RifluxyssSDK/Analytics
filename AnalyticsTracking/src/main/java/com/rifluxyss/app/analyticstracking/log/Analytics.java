@@ -22,11 +22,8 @@ public class Analytics extends AppManagerSingleton {
 
     private Context mContext;
 
-    public Analytics(Context mContext) {
-        this.mContext = mContext;
-    }
-
     public Analytics() {
+        this.mContext = AppManagerSingleton.getInstance().getContext();
     }
 
     public void insert(AnalyticsLog analyticsLog) {
