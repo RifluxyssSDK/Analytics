@@ -7,8 +7,10 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
@@ -20,7 +22,7 @@ import java.util.List;
 
 public class Analytics extends AppManagerSingleton {
 
-    private Context mContext;
+    private final Context mContext;
 
     public Analytics() {
         this.mContext = AppManagerSingleton.getInstance().getContext();
@@ -38,10 +40,6 @@ public class Analytics extends AppManagerSingleton {
         return localDatabase().analyticsLogDaoLogDao().readBefore(localDateTime);
     }
 
-    public List<AnalyticsLog> getAfterDateLog(LocalDateTime localDateTime) {
-        return localDatabase().analyticsLogDaoLogDao().readAfter(localDateTime);
-    }
-
     public int deleteBeforeDateLog(LocalDateTime localDateTime) {
         return localDatabase().analyticsLogDaoLogDao().deleteBefore(localDateTime);
     }
@@ -53,7 +51,11 @@ public class Analytics extends AppManagerSingleton {
     @SuppressLint("NewApi")
     public void deleteBeforeDayLog() {
 
-        int analyticsLogs = localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().minusDays(4));
+        List<AnalyticsLog> analyticsLogData = localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().getDayOfWeek().minus(1).getValue());
+        List<AnalyticsLog> analyticsLog = localDatabase().analyticsLogDaoLogDao().readBeforeDays(LocalDateTime.now().getDayOfWeek().minus(1).getValue());
+        Log.e("status","check Data Before ===> " + analyticsLogData.size());
+        Log.e("status","check Data Now ===> " + new Gson().toJson(analyticsLog.get(analyticsLog.size()-1)));
+        Log.e("status","check Data Now ===> " + new Gson().toJson(analyticsLog.get(0)));
 
         new Utils().isDeleteFile(Utils.fileName);
     }
@@ -73,14 +75,14 @@ public class Analytics extends AppManagerSingleton {
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
             builder.setRequiresCharging(true);
             builder.setPersisted(true);
-            builder.setMinimumLatency(Utils.MINUTE_MILLIS); // 4 Days duration
+            builder.setMinimumLatency(Utils.SECOND_MILLIS); // 4 Days duration
 
             int scheduleStatus = jobScheduler.schedule(builder.build());
 
             String message = scheduleStatus == JobScheduler.RESULT_SUCCESS ? "Job Schedule Successfully" : "Job Schedule Failed!!";
             Toast.makeText(AppManagerSingleton.getInstance().getContext(), message, Toast.LENGTH_SHORT).show();
 
-            new Utils().create(mContext,Utils.MINUTE_MILLIS);
+            new Utils().create(mContext,Utils.SECOND_MILLIS);
 
         }
 

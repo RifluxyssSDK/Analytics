@@ -18,17 +18,18 @@ public class AnalyticsSyncService extends JobService {
     }
 
     @Override
-    public boolean onStartJob(JobParameters params) {
+    public boolean onStartJob(JobParameters params)
+    {
 
         Toast.makeText(this, "Job Fired ===> : " + params.getJobId(), Toast.LENGTH_LONG).show();
         new Analytics().deleteBeforeDayLog();
-
-        jobFinished(params, true);
         return true;
+
     }
 
     @Override
-    public boolean onStopJob(JobParameters params) {
+    public boolean onStopJob(JobParameters params)
+    {
         return true;
     }
 

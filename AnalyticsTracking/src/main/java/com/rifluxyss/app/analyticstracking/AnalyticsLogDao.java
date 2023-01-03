@@ -1,6 +1,7 @@
 package com.rifluxyss.app.analyticstracking;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -18,13 +19,10 @@ public interface AnalyticsLogDao {
     @Insert
     void insert(List<AnalyticsLog> logs);
 
-    @Query("SELECT * FROM AnalyticsLog WHERE eventTime >= :eventTime")
-    List<AnalyticsLog> readAfter(LocalDateTime eventTime);
-
-    @Query("SELECT * FROM AnalyticsLog WHERE eventTime <= :eventTime")
+    @Query("SELECT * FROM AnalyticsLog WHERE eventTime > :eventTime")
     List<AnalyticsLog> readBefore(LocalDateTime eventTime);
 
-    @Query("SELECT * FROM AnalyticsLog WHERE eventTime <= :eventTime")
+    @Query("SELECT * FROM AnalyticsLog WHERE eventTime > :eventTime")
     int readBeforeDateCount(LocalDateTime eventTime);
 
     @Query("DELETE FROM AnalyticsLog WHERE Day = :day")
@@ -32,6 +30,12 @@ public interface AnalyticsLogDao {
 
     @Query("SELECT * FROM AnalyticsLog WHERE Day = :day")
     List<AnalyticsLog> readBeforeDateCount(Number day);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE Day = :day")
+    List<AnalyticsLog> readBeforeDays(Number day);
+
+    @Delete
+    void deleteBeforeDays(List<AnalyticsLog> deleteAnalyticsLogs);
 
     @Query("DELETE FROM AnalyticsLog WHERE eventTime > :eventTime")
     int deleteBefore(LocalDateTime eventTime);
