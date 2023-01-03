@@ -101,8 +101,6 @@ public class Utils {
 
         return days != 0 ?  LocalDateTime.now().plusDays(days).format(sdf) : hours != 0 ?  LocalDateTime.now().plusHours(hours).format(sdf) :
                 minutes != 0 ?  LocalDateTime.now().plusMinutes(minutes).format(sdf) :  LocalDateTime.now().plusDays(seconds).format(sdf);
-
     }
-
 
 }
