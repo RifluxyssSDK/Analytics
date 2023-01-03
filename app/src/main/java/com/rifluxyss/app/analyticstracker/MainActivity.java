@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         analytics = new Analytics();
 
-        analytics.insert(create("onCreate","1","testing Log",1.10f,11));
+        analytics.insert(create("onCreate","1","testing Log",1.0f,11));
 
     }
 
@@ -34,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        analytics.insert(create("onstart","2","testing Log Start",2.10f,11));
+        analytics.insert(create("onstart","2","testing Log Start",2.0f,11));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        analytics.insert(create("onResume","3","testing Log onResume",3.10f,11));
+        analytics.insert(create("onResume","3","testing Log onResume",3.0f,11));
     }
 
     @Override

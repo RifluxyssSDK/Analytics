@@ -36,10 +36,6 @@ public class Analytics extends AppManagerSingleton {
         return localDatabase().analyticsLogDaoLogDao().getAll();
     }
 
-    public List<AnalyticsLog> getDateLog(LocalDateTime localDateTime) {
-        return localDatabase().analyticsLogDaoLogDao().readBefore(localDateTime);
-    }
-
     public int deleteBeforeDateLog(LocalDateTime localDateTime) {
         return localDatabase().analyticsLogDaoLogDao().deleteBefore(localDateTime);
     }
@@ -49,13 +45,10 @@ public class Analytics extends AppManagerSingleton {
     }
 
     @SuppressLint("NewApi")
-    public void deleteBeforeDayLog() {
+    public void deleteLogs() {
 
-        List<AnalyticsLog> analyticsLogData = localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().getDayOfWeek().minus(1).getValue());
-        List<AnalyticsLog> analyticsLog = localDatabase().analyticsLogDaoLogDao().readBeforeDays(LocalDateTime.now().getDayOfWeek().minus(1).getValue());
-        Log.e("status","check Data Before ===> " + analyticsLogData.size());
-        Log.e("status","check Data Now ===> " + new Gson().toJson(analyticsLog.get(analyticsLog.size()-1)));
-        Log.e("status","check Data Now ===> " + new Gson().toJson(analyticsLog.get(0)));
+        List<AnalyticsLog> analyticsLogData = localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().getDayOfWeek().minus(4).getValue());
+        if (analyticsLogData.size() > 0) { localDatabase().analyticsLogDaoLogDao().deleteBeforeDays(analyticsLogData); }
 
         new Utils().isDeleteFile(Utils.fileName);
     }
@@ -75,14 +68,14 @@ public class Analytics extends AppManagerSingleton {
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
             builder.setRequiresCharging(true);
             builder.setPersisted(true);
-            builder.setMinimumLatency(Utils.SECOND_MILLIS); // 4 Days duration
+            builder.setMinimumLatency(Utils.DAY_MILLIS); // 4 Days duration
 
             int scheduleStatus = jobScheduler.schedule(builder.build());
 
             String message = scheduleStatus == JobScheduler.RESULT_SUCCESS ? "Job Schedule Successfully" : "Job Schedule Failed!!";
             Toast.makeText(AppManagerSingleton.getInstance().getContext(), message, Toast.LENGTH_SHORT).show();
 
-            new Utils().create(mContext,Utils.SECOND_MILLIS);
+            new Utils().create(mContext,Utils.DAY_MILLIS);
 
         }
 

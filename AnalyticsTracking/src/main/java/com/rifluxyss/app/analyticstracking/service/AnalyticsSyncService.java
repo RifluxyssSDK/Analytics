@@ -22,7 +22,7 @@ public class AnalyticsSyncService extends JobService {
     {
 
         Toast.makeText(this, "Job Fired ===> : " + params.getJobId(), Toast.LENGTH_LONG).show();
-        new Analytics().deleteBeforeDayLog();
+        new Analytics().deleteLogs();
         return true;
 
     }

@@ -2,37 +2,19 @@ package com.rifluxyss.app.analyticstracking.converters;
 
 import androidx.room.TypeConverter;
 
+import com.google.gson.Gson;
+
 
 public class NumberConverters {
 
     @TypeConverter
-    public static int fromNumberValue(Number value) {
+    public static String fromNumberValue(Number value) {
+        return new Gson().toJson(value);
+    }
 
-        if (value instanceof Double) {
-
-            return (int) value.doubleValue();
-
-        } else if (value instanceof Long) {
-
-            return (int) value.longValue();
-
-        } else if (value instanceof Float) {
-
-            return (int) value.floatValue();
-
-        } else if (value instanceof  Byte) {
-
-            return value.byteValue();
-
-        } else if (value instanceof Short) {
-
-            return value.shortValue();
-
-        } else {
-
-            return value.intValue();
-        }
-
+    @TypeConverter
+    public static Number fromNumberString(String value) {
+        return new Gson().fromJson(value,Number.class);
     }
 
 }

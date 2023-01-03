@@ -19,20 +19,8 @@ public interface AnalyticsLogDao {
     @Insert
     void insert(List<AnalyticsLog> logs);
 
-    @Query("SELECT * FROM AnalyticsLog WHERE eventTime > :eventTime")
-    List<AnalyticsLog> readBefore(LocalDateTime eventTime);
-
-    @Query("SELECT * FROM AnalyticsLog WHERE eventTime > :eventTime")
-    int readBeforeDateCount(LocalDateTime eventTime);
-
-    @Query("DELETE FROM AnalyticsLog WHERE Day = :day")
-    int deleteBefore(Number day);
-
     @Query("SELECT * FROM AnalyticsLog WHERE Day = :day")
     List<AnalyticsLog> readBeforeDateCount(Number day);
-
-    @Query("SELECT * FROM AnalyticsLog WHERE Day = :day")
-    List<AnalyticsLog> readBeforeDays(Number day);
 
     @Delete
     void deleteBeforeDays(List<AnalyticsLog> deleteAnalyticsLogs);
