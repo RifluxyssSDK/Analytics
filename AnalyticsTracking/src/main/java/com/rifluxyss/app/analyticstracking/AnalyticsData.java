@@ -1,18 +1,20 @@
 package com.rifluxyss.app.analyticstracking;
 
-import java.time.LocalDateTime;
 
 public class AnalyticsData {
 
-    public final String localDateTime;
+    public final String scheduleDateTime;
 
     public final Number day;
 
     public String duration;
 
-    public AnalyticsData(String localDateTime, Number day,String duration) {
-        this.localDateTime = localDateTime;
+    public final String expireDateTime;
+
+    public AnalyticsData(String localDateTime, Number day,String duration,String expireTime) {
+        this.scheduleDateTime = localDateTime;
         this.day = day;
         this.duration = duration;
+        this.expireDateTime = expireTime;
     }
 }

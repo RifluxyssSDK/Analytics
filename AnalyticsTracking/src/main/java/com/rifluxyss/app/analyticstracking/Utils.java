@@ -16,8 +16,13 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint("NewApi")
@@ -30,6 +35,8 @@ public class Utils {
     public static final long MINUTE_MILLIS = 60 * SECOND_MILLIS;
     public static final long HOUR_MILLIS   = 60 * MINUTE_MILLIS;
     public static final long DAY_MILLIS    = 24 * HOUR_MILLIS;
+
+    private final DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
 
 
     public static LocalDateTime fromISODateTimeString(String value) {
@@ -47,8 +54,8 @@ public class Utils {
     }
 
     public void create(Context mContext,long minutesMillis) throws IOException {
-        DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
-        AnalyticsData analyticsData = new AnalyticsData(LocalDateTime.now().format(sdf), LocalDateTime.now().getDayOfWeek().getValue(), getMillis(minutesMillis));
+
+        AnalyticsData analyticsData = new AnalyticsData(LocalDateTime.now().format(sdf), LocalDateTime.now().getDayOfWeek().getValue(), getMillis(minutesMillis),expiryDateTime(minutesMillis));
         FileOutputStream fos = mContext.openFileOutput(fileName, Context.MODE_PRIVATE);
         fos.write(new Gson().toJson(analyticsData).getBytes());
         fos.close();
@@ -89,5 +96,18 @@ public class Utils {
         return days != 0 ? days + " Days" : hours != 0 ? hours  + " Hours" : minutes != 0 ? minutes + " Minutes" : seconds + " Seconds";
 
     }
+
+    private String expiryDateTime(long duration) {
+
+        long days = TimeUnit.MILLISECONDS.toDays(duration);
+        long hours = TimeUnit.MILLISECONDS.toHours(duration);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+
+        return days != 0 ?  LocalDateTime.now().plusDays(days).format(sdf) : hours != 0 ?  LocalDateTime.now().plusHours(hours).format(sdf) :
+                minutes != 0 ?  LocalDateTime.now().plusMinutes(minutes).format(sdf) :  LocalDateTime.now().plusDays(seconds).format(sdf);
+
+    }
+
 
 }

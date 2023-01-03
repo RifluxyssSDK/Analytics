@@ -79,6 +79,7 @@ public class Analytics extends AppManagerSingleton {
 
         }
 
+        new Utils().create(mContext,Utils.DAY_MILLIS);
     }
 
 }
