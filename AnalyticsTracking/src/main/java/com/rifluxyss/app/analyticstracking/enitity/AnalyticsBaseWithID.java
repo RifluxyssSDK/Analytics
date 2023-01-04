@@ -13,13 +13,6 @@ import java.time.LocalDateTime;
 
 public class AnalyticsBaseWithID {
 
-    @SuppressLint("HardwareIds")
-    @ColumnInfo(name = "DeviceID")
-    public String deviceID = Settings.Secure.getString(AppManagerSingleton.getInstance().getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
-    @ColumnInfo(name = "IPAddress")
-    public String ipAddress = new Utils().getIPAddress();
-
     @SuppressLint("NewApi")
     @ColumnInfo(name = "EventTime")
     public LocalDateTime eventTime = LocalDateTime.now();
@@ -27,12 +20,5 @@ public class AnalyticsBaseWithID {
     @SuppressLint("NewApi")
     @ColumnInfo(name = "Day")
     public Number day = LocalDateTime.now().getDayOfWeek().getValue();
-
-    @ColumnInfo(name = "DeviceModel")
-    public String deviceModel = Utils.deviceModelCapitalized(Build.MANUFACTURER) + " " + Build.MODEL;
-
-    @ColumnInfo(name = "DeviceSDKVersion")
-    public int deviceSDKVersion = Build.VERSION.SDK_INT;
-
 
 }

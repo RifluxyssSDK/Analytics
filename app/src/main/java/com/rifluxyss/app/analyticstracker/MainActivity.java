@@ -3,8 +3,10 @@ package com.rifluxyss.app.analyticstracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 
+import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 
@@ -71,14 +73,13 @@ public class MainActivity extends AppCompatActivity {
     {
         //First part in AddtlDesc is how long the app has been up running
         AnalyticsLog logEntity = new AnalyticsLog();
-        logEntity.hostId = "5";
         //Make sure the fields' length confirms to enterprise server DB schema
         //description is clob
         logEntity.userID = "1";
         logEntity.locationNbr = "29";
         logEntity.routNbr = routeNbr;
         logEntity.eventNbr = eventNumber;
-        logEntity.addtlDesc = description;
+        logEntity.addtlDesc = description + Utils.deviceModelCapitalized(Build.MANUFACTURER) + " " + Build.MODEL + Build.VERSION.SDK_INT;
         logEntity.addtlNbr = additionalNumber;
         return logEntity;
     }

@@ -6,11 +6,11 @@ import android.content.Context;
 @SuppressLint("StaticFieldLeak")
 public class AppManagerSingleton {
 
-    private Lazy<AnalyticsDatabase> localDatabaseLazy;
-
     protected static AppManagerSingleton mAppManagerSingletonInstance;
 
     protected Context context;
+
+    protected AnalyticsDatabase mAnalyticsDatabase;
 
     public static AppManagerSingleton getInstance() {
 
@@ -30,7 +30,7 @@ public class AppManagerSingleton {
 
     public void initialize(Context context) {
         this.context = context;
-        localDatabaseLazy = Lazy.create(() -> AnalyticsDatabase.build(context));
+        mAnalyticsDatabase = AnalyticsDatabase.build(context);
     }
 
     public Context getContext() {
@@ -38,8 +38,7 @@ public class AppManagerSingleton {
     }
 
     public AnalyticsDatabase localDatabase() {
-        return getInstance().localDatabaseLazy.get();
+        return getInstance().mAnalyticsDatabase;
     }
-
 
 }
