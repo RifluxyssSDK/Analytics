@@ -1,20 +1,11 @@
 package com.rifluxyss.app.analyticstracking.log;
 
-import static android.content.Context.JOB_SCHEDULER_SERVICE;
-
-import android.annotation.SuppressLint;
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
 import android.content.Context;
-import android.widget.Toast;
 
-import com.rifluxyss.app.analyticstracking.Utils;
+import androidx.lifecycle.LiveData;
+
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
-import com.rifluxyss.app.analyticstracking.service.AnalyticsSyncService;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,53 +21,49 @@ public class Analytics extends AppManagerSingleton {
         localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
     }
 
-    public List<AnalyticsLog> getLog() {
+    public void insert(List<AnalyticsLog> analyticsLog) {
+        localDatabase().analyticsLogDaoLogDao().insert(analyticsLog);
+    }
+
+    public List<AnalyticsLog> getAllLog() {
         return localDatabase().analyticsLogDaoLogDao().getAll();
+    }
+
+
+    public LiveData<List<AnalyticsLog>> getDateTimeLogs(LocalDateTime localDateTime) {
+        return localDatabase().analyticsLogDaoLogDao().getSpecificLogs(localDateTime);
+    }
+
+    public LiveData<List<AnalyticsLog>> getDateWeekLogs(Number day) {
+        return localDatabase().analyticsLogDaoLogDao().getBeforeSpecificLogs(day);
     }
 
     public int deleteBeforeDateLog(LocalDateTime localDateTime) {
         return localDatabase().analyticsLogDaoLogDao().deleteBefore(localDateTime);
     }
 
+    public List<AnalyticsLog> deleteBeforeDateLog(Number day) {
+        return localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(day);
+    }
+
+    public void deleteLogs(List<AnalyticsLog> day) {
+        localDatabase().analyticsLogDaoLogDao().deleteBeforeDays(day);
+    }
+
+
     public void deleteAllLog() {
         localDatabase().analyticsLogDaoLogDao().deleteAllLog();
     }
 
-    @SuppressLint("NewApi")
-    public void deleteLogs() {
-
-        List<AnalyticsLog> analyticsLogData = localDatabase().analyticsLogDaoLogDao().readBeforeDateCount(LocalDateTime.now().getDayOfWeek().minus(4).getValue());
-        if (analyticsLogData.size() > 0) { localDatabase().analyticsLogDaoLogDao().deleteBeforeDays(analyticsLogData); }
-
-        new Utils().isDeleteFile(Utils.fileName);
+    public List<AnalyticsLog> getListAnalyticsLocationRoute(String locationNumber, Number routeNumber) {
+        return localDatabase().analyticsLogDaoLogDao().getListLocationRouteData(locationNumber,routeNumber);
     }
 
-
-    public void deleteBeforeDaysLog() throws IOException {
-
-        boolean isExists = new Utils().isFilePresent(Utils.fileName);
-        if (!isExists) {
-
-            JobScheduler jobScheduler = (JobScheduler) AppManagerSingleton.getInstance().getContext().getSystemService(JOB_SCHEDULER_SERVICE);
-            jobScheduler.cancelAll();
-
-            ComponentName mComponentName = new ComponentName(AppManagerSingleton.getInstance().getContext(), AnalyticsSyncService.class);
-
-            JobInfo.Builder builder = new JobInfo.Builder(2, mComponentName);
-            builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
-            builder.setRequiresCharging(true);
-            builder.setPersisted(true);
-            builder.setMinimumLatency(Utils.DAY_MILLIS); // 4 Days duration
-
-            int scheduleStatus = jobScheduler.schedule(builder.build());
-
-            String message = scheduleStatus == JobScheduler.RESULT_SUCCESS ? "Job Schedule Successfully" : "Job Schedule Failed!!";
-            Toast.makeText(AppManagerSingleton.getInstance().getContext(), message, Toast.LENGTH_SHORT).show();
-
-            new Utils().create(mContext,Utils.DAY_MILLIS);
-
-        }
-
+    public List<AnalyticsLog> getListAnalyticsUserId(String usrID) {
+        return localDatabase().analyticsLogDaoLogDao().getListUserData(usrID);
     }
 
+    public List<AnalyticsLog> getListAnalyticsHostID(String hostID) {
+        return localDatabase().analyticsLogDaoLogDao().getListHostIDData(hostID);
+    }
 }

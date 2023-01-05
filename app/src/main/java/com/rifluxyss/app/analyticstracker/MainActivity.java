@@ -1,19 +1,31 @@
 package com.rifluxyss.app.analyticstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.rifluxyss.app.analyticstracking.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
     private Analytics analytics;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +35,27 @@ public class MainActivity extends AppCompatActivity {
 
         analytics.insert(create("onCreate","1","testing Log",1.0f,11));
 
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        analytics.insert(create("onstart","2","testing Log Start",2.0f,11));
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        analytics.insert(create("onResume","3","testing Log onResume",3.0f,11));
+        LiveData<List<AnalyticsLog>> analyticsLogLiveData = analytics.getDateWeekLogs(LocalDateTime.now().getDayOfWeek().getValue());
+        analyticsLogLiveData.observe(this, analyticsLog -> {
+            Log.e("status","check Data's ===> " + analyticsLog.size());
+        });
     }
 
     @Override
@@ -32,19 +65,6 @@ public class MainActivity extends AppCompatActivity {
         analytics.insert(create("onRestart","4","testing Log Restart",4.0,11));
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        analytics.insert(create("onstart","2","testing Log Start",2.0f,11));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        analytics.insert(create("onResume","3","testing Log onResume",3.0f,11));
-    }
 
     @Override
     protected void onPause() {
@@ -54,18 +74,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NewApi")
     @Override
     protected void onStop() {
         super.onStop();
 
         analytics.insert(create("onStop","6","testing Log onStop",6.0f,11));
+
+
     }
 
+    @SuppressLint("NewApi")
     @Override
     protected void onDestroy() {
-        super.onDestroy();
 
+        Log.e("status","Destroy Called");
         analytics.insert(create("onDestroy","7","testing Log onDestroy",7.0f,11));
+
+        super.onDestroy();
     }
 
     @SuppressLint("HardwareIds")
@@ -79,10 +105,9 @@ public class MainActivity extends AppCompatActivity {
         logEntity.locationNbr = "29";
         logEntity.routNbr = routeNbr;
         logEntity.eventNbr = eventNumber;
-        logEntity.addtlDesc = description + Utils.deviceModelCapitalized(Build.MANUFACTURER) + " " + Build.MODEL + Build.VERSION.SDK_INT;
+        logEntity.addtlDesc = String.format("%s %s %s %s", description, Utils.deviceModelCapitalized(Build.MANUFACTURER) , Build.MODEL,Build.VERSION.SDK_INT);
         logEntity.addtlNbr = additionalNumber;
         return logEntity;
     }
-
 
 }

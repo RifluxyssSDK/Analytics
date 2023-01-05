@@ -19,14 +19,7 @@ public abstract class AnalyticsDatabase extends MainDatabase {
 
     public static synchronized AnalyticsDatabase build(final Context context) {
 
-        Migration mMigration =new Migration(5,6) {
-            @Override
-            public void migrate(@NonNull SupportSQLiteDatabase database) {
-                database.execSQL("CREATE TABLE IF NOT EXISTS `AnalyticsLog` (`HostId` TEXT NOT NULL, PRIMARY KEY(`key_id`))");
-            }
-        };
-
         return Room.databaseBuilder(context, AnalyticsDatabase.class, "analytics-data.db").allowMainThreadQueries()
-                .fallbackToDestructiveMigration().addMigrations(mMigration).build();
+                .fallbackToDestructiveMigration().build();
     }
 }

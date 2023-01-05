@@ -1,5 +1,6 @@
 package com.rifluxyss.app.analyticstracking;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,6 +28,21 @@ public interface AnalyticsLogDao {
 
     @Query("DELETE FROM AnalyticsLog WHERE eventTime > :eventTime")
     int deleteBefore(LocalDateTime eventTime);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE EventTime <= :localDateTime")
+    LiveData<List<AnalyticsLog>> getSpecificLogs(LocalDateTime localDateTime);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE Day <= :day")
+    LiveData<List<AnalyticsLog>> getBeforeSpecificLogs(Number day);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE LocationNbr = :localNbr AND RouteNbr = :routeNbr")
+    List<AnalyticsLog> getListLocationRouteData(String localNbr, Number routeNbr);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE UserId = :userID")
+    List<AnalyticsLog> getListUserData(String userID);
+
+    @Query("SELECT * FROM AnalyticsLog WHERE HostId = :hostID")
+    List<AnalyticsLog> getListHostIDData(String hostID);
 
     @Query("SELECT * FROM AnalyticsLog")
     List<AnalyticsLog> getAll();

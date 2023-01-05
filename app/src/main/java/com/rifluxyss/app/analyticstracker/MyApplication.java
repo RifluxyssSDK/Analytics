@@ -15,11 +15,5 @@ public class MyApplication extends Application {
 
         AppManagerSingleton.getInstance().initialize(this);
 
-        try {
-            new Analytics().deleteBeforeDaysLog();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 }
