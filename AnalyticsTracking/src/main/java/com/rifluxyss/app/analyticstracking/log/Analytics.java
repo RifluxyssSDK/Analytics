@@ -38,6 +38,10 @@ public class Analytics extends AppManagerSingleton {
         return localDatabase().analyticsLogDaoLogDao().getBeforeSpecificLogs(day);
     }
 
+    public LiveData<List<AnalyticsLog>> getSpecificDateTimeLogs(LocalDateTime startDayTime, LocalDateTime endDateTime) {
+        return localDatabase().analyticsLogDaoLogDao().getSpecificDateTimeLogs(startDayTime,endDateTime);
+    }
+
     public int deleteBeforeDateLog(LocalDateTime localDateTime) {
         return localDatabase().analyticsLogDaoLogDao().deleteBefore(localDateTime);
     }

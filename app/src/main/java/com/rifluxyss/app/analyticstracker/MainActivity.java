@@ -56,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
         analyticsLogLiveData.observe(this, analyticsLog -> {
             Log.e("status","check Data's ===> " + analyticsLog.size());
         });
+
+        Log.e("status","check Data's start Time===> " +  LocalDateTime.now().minusDays(4));
+        Log.e("status","check Data's End time ===> " +  LocalDateTime.now().minusDays(4).minusHours(1));
+
+        LiveData<List<AnalyticsLog>> analyticsLogLiveDataDate = analytics.getSpecificDateTimeLogs( LocalDateTime.now().minusDays(4) ,LocalDateTime.now().minusDays(4).minusHours(1));
+        analyticsLogLiveDataDate.observe(this, analyticsLog -> {
+            Log.e("status","check Data's DateTime ===> " + analyticsLog.size());
+        });
     }
 
     @Override

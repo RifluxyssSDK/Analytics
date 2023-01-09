@@ -32,6 +32,9 @@ public interface AnalyticsLogDao {
     @Query("SELECT * FROM AnalyticsLog WHERE EventTime <= :localDateTime")
     LiveData<List<AnalyticsLog>> getSpecificLogs(LocalDateTime localDateTime);
 
+    @Query("SELECT * FROM AnalyticsLog WHERE EventTime <= :startDateTime LIKE EventTime >= :endDateTime")
+    LiveData<List<AnalyticsLog>> getSpecificDateTimeLogs(LocalDateTime startDateTime, LocalDateTime endDateTime);
+
     @Query("SELECT * FROM AnalyticsLog WHERE Day <= :day")
     LiveData<List<AnalyticsLog>> getBeforeSpecificLogs(Number day);
 
