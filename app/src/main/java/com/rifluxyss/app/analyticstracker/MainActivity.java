@@ -2,8 +2,10 @@ package com.rifluxyss.app.analyticstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.upload.Logger;
+import com.rifluxyss.app.analyticstracking.viewmodel.UploadLogsViewModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -47,12 +50,28 @@ public class MainActivity extends AppCompatActivity {
 
         analytics.insert(create("3", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 3.0f, 11, "Testkishanth"));
 
+        UploadLogsViewModel mViewModel = new ViewModelProvider(this).get(UploadLogsViewModel.class);
+        mViewModel.init();
+
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            try {
+                new Logger().uploadLogsAPi(mViewModel).observe(this, response -> {
+                    String responseData = response != null ? response : "failure";
+                    Log.e("status", "get Response===> " + responseData);
+                });
+
+            } catch (Throwable throwable) {
+                Log.e("status", "get Response===> " + throwable.getLocalizedMessage());
+                throwable.printStackTrace();
+            }
+
+        });
+
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-
         analytics.insert(create("4", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 4.0, 11, "TestAjith"));
     }
 
@@ -83,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public AnalyticsLog create(String eventNumber, String description, Number additionalNumber, Number routeNbr, String userID) {
+    public AnalyticsLog create(String eventNumber, String description, Number
+            additionalNumber, Number routeNbr, String userID) {
         //First part in AddtlDesc is how long the app has been up running
         AnalyticsLog logEntity = new AnalyticsLog();
         //Make sure the fields' length confirms to enterprise server DB schema
@@ -97,5 +117,6 @@ public class MainActivity extends AppCompatActivity {
         logEntity.logger = "PRC test";
         return logEntity;
     }
+
 
 }
