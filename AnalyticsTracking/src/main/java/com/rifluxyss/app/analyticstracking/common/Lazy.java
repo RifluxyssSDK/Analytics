@@ -1,4 +1,4 @@
-package com.rifluxyss.app.analyticstracking;
+package com.rifluxyss.app.analyticstracking.common;
 
 import android.annotation.SuppressLint;
 

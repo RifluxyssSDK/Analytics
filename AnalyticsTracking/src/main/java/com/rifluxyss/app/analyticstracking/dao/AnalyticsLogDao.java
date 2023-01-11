@@ -1,4 +1,4 @@
-package com.rifluxyss.app.analyticstracking;
+package com.rifluxyss.app.analyticstracking.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

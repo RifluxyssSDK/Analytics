@@ -1,13 +1,10 @@
-package com.rifluxyss.app.analyticstracking;
+package com.rifluxyss.app.analyticstracking.database;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.TypeConverters;
-import androidx.room.migration.Migration;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.rifluxyss.app.analyticstracking.converters.DateTimeConverter;
 import com.rifluxyss.app.analyticstracking.converters.NumberConverters;

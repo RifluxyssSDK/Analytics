@@ -2,7 +2,7 @@ package com.rifluxyss.app.analyticstracking.converters;
 
 import androidx.room.TypeConverter;
 
-import com.rifluxyss.app.analyticstracking.Utils;
+import com.rifluxyss.app.analyticstracking.common.Utils;
 import java.time.LocalDateTime;
 
 public class DateTimeConverter {

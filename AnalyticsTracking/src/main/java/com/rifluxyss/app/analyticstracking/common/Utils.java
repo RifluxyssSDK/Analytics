@@ -1,4 +1,4 @@
-package com.rifluxyss.app.analyticstracking;
+package com.rifluxyss.app.analyticstracking.common;
 
 import static android.content.Context.WIFI_SERVICE;
 
@@ -48,39 +48,6 @@ public class Utils {
         return modelName.substring(0, 1).toUpperCase() + modelName.substring(1).toLowerCase();
     }
 
-    public void create(Context mContext,long minutesMillis) throws IOException {
-
-        AnalyticsData analyticsData = new AnalyticsData(LocalDateTime.now().format(sdf), LocalDateTime.now().getDayOfWeek().getValue(), getMillis(minutesMillis),expiryDateTime(minutesMillis));
-        FileOutputStream fos = mContext.openFileOutput(fileName, Context.MODE_PRIVATE);
-        fos.write(new Gson().toJson(analyticsData).getBytes());
-        fos.close();
-    }
-
-    public boolean isFilePresent(String fileName) {
-        String path = new File(AppManagerSingleton.getInstance().getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
-        File file = new File(path);
-        return file.exists();
-    }
-
-    public void isDeleteFile(String fileName) {
-        String path =  new File(AppManagerSingleton.getInstance().getContext().getFilesDir().getAbsolutePath(),fileName).getAbsolutePath();
-        new File(path).delete();
-    }
-
-    public String getIPAddress() {
-
-        WifiManager wifiMgr = (WifiManager)AppManagerSingleton.getInstance().getContext().getApplicationContext().getSystemService(WIFI_SERVICE);
-        int ipAddress = wifiMgr.getConnectionInfo().getIpAddress();
-        byte[] buffer = ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(ipAddress).array();
-
-        try {
-           return InetAddress.getByAddress(buffer).getHostAddress();
-        } catch (UnknownHostException ignore) {
-        }
-
-        return "";
-
-    }
 
     private String getMillis(long duration) {
 
@@ -101,6 +68,15 @@ public class Utils {
 
         return days != 0 ?  LocalDateTime.now().plusDays(days).format(sdf) : hours != 0 ?  LocalDateTime.now().plusHours(hours).format(sdf) :
                 minutes != 0 ?  LocalDateTime.now().plusMinutes(minutes).format(sdf) :  LocalDateTime.now().plusDays(seconds).format(sdf);
+    }
+
+    public static String emptyIfNull(String str)
+    {
+        if (str != null && !str.equalsIgnoreCase("null"))
+        {
+            return str;
+        }
+        return EMPTY;
     }
 
 }

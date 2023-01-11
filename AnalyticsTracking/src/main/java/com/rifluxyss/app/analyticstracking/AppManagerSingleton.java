@@ -3,6 +3,8 @@ package com.rifluxyss.app.analyticstracking;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import com.rifluxyss.app.analyticstracking.database.AnalyticsDatabase;
+
 @SuppressLint("StaticFieldLeak")
 public class AppManagerSingleton {
 

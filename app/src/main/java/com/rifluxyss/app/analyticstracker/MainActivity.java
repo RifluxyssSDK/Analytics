@@ -7,25 +7,20 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.rifluxyss.app.analyticstracking.Utils;
+import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
+import com.rifluxyss.app.analyticstracking.upload.Logger;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
     private Analytics analytics;
 
-    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         analytics = new Analytics();
 
-        analytics.insert(create("onCreate","1","testing Log",1.0f,11));
-
+        analytics.insert(create("1", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 1.0f, 11, "Testkishanth"));
 
     }
 
@@ -43,34 +37,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        analytics.insert(create("onstart","2","testing Log Start",2.0f,11));
+        analytics.insert(create("2", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 2.0f, 11, "Testkishanth"));
     }
 
-    @SuppressLint("NewApi")
+
     @Override
     protected void onResume() {
         super.onResume();
 
-        analytics.insert(create("onResume","3","testing Log onResume",3.0f,11));
-        LiveData<List<AnalyticsLog>> analyticsLogLiveData = analytics.getDateWeekLogs(LocalDateTime.now().getDayOfWeek().getValue());
-        analyticsLogLiveData.observe(this, analyticsLog -> {
-            Log.e("status","check Data's ===> " + analyticsLog.size());
-        });
+        analytics.insert(create("3", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 3.0f, 11, "Testkishanth"));
 
-        Log.e("status","check Data's start Time===> " +  LocalDateTime.now().minusDays(4));
-        Log.e("status","check Data's End time ===> " +  LocalDateTime.now().minusDays(4).minusHours(1));
-
-        LiveData<List<AnalyticsLog>> analyticsLogLiveDataDate = analytics.getSpecificDateTimeLogs( LocalDateTime.now().minusDays(4) ,LocalDateTime.now().minusDays(4).minusHours(1));
-        analyticsLogLiveDataDate.observe(this, analyticsLog -> {
-            Log.e("status","check Data's DateTime ===> " + analyticsLog.size());
-        });
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
 
-        analytics.insert(create("onRestart","4","testing Log Restart",4.0,11));
+        analytics.insert(create("4", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 4.0, 11, "TestAjith"));
     }
 
 
@@ -78,43 +61,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        analytics.insert(create("onPause","5","testing Log onPause",5.0f,11));
+        analytics.insert(create("5", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 5.0f, 11, "TestAjith"));
 
     }
 
-    @SuppressLint("NewApi")
     @Override
     protected void onStop() {
         super.onStop();
 
-        analytics.insert(create("onStop","6","testing Log onStop",6.0f,11));
+        analytics.insert(create("6", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 6.0f, 11, "TestAjith"));
 
 
     }
 
-    @SuppressLint("NewApi")
     @Override
     protected void onDestroy() {
 
-        Log.e("status","Destroy Called");
-        analytics.insert(create("onDestroy","7","testing Log onDestroy",7.0f,11));
+        Log.e("status", "Destroy Called");
+        analytics.insert(create("7", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 7.0f, 11, "TestAjith"));
 
         super.onDestroy();
     }
 
-    @SuppressLint("HardwareIds")
-    public AnalyticsLog create(String message, String eventNumber, String description, Number additionalNumber, Number routeNbr)
-    {
+    public AnalyticsLog create(String eventNumber, String description, Number additionalNumber, Number routeNbr, String userID) {
         //First part in AddtlDesc is how long the app has been up running
         AnalyticsLog logEntity = new AnalyticsLog();
         //Make sure the fields' length confirms to enterprise server DB schema
         //description is clob
-        logEntity.userID = "1";
+        logEntity.userID = userID;
         logEntity.locationNbr = "29";
         logEntity.routNbr = routeNbr;
         logEntity.eventNbr = eventNumber;
-        logEntity.addtlDesc = String.format("%s %s %s %s", description, Utils.deviceModelCapitalized(Build.MANUFACTURER) , Build.MODEL,Build.VERSION.SDK_INT);
+        logEntity.addtlDesc = description;
         logEntity.addtlNbr = additionalNumber;
+        logEntity.logger = "PRC test";
         return logEntity;
     }
 
