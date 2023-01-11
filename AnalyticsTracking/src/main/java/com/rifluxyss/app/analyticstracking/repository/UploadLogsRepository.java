@@ -35,11 +35,11 @@ public class UploadLogsRepository {
 
 
     public MutableLiveData<String> uploadLogs(String logsPayLoad) throws IOException{
-        final MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
+        MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
 
         Call call = mRestInterface.uploadAnalyticsLogs(logsPayLoad);
         Response response = call.execute();
-        String responseData = response.isSuccessful() ? new Gson().toJson(response.body()) : null;
+        String responseData = response.isSuccessful() && response.body() != null ?  response.body().toString() : null;
         mutableLiveData.postValue(responseData);
         return mutableLiveData;
     }

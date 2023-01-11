@@ -35,12 +35,10 @@ public class RestAPi {
                 X509TrustManager x509TrustManager = new X509TrustManager() {
                     @Override
                     public void checkClientTrusted(X509Certificate[] chain, String authType) {
-//                        LOGGER.info("checkClientTrusted method called from X509TrustManager");
                     }
 
                     @Override
                     public void checkServerTrusted(X509Certificate[] chain, String authType) {
-                        //LOGGER.info("checkServerTrusted method called from X509TrustManager");
                     }
 
                     @Override
@@ -55,7 +53,7 @@ public class RestAPi {
                 httpClientBuilder.sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager);
             } catch (Exception e) {
                 throw new RuntimeException(e);
-            }//Don't specify connectionSpecs for http
+            }
         }
         return httpClientBuilder.build();
     }

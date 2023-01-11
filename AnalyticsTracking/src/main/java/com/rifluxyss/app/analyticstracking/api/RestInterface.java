@@ -7,7 +7,7 @@ import retrofit2.http.POST;
 
 public interface RestInterface {
 
-    @Headers({"applicationCode: CPRNT; charset=utf-8"})
+    @Headers({"applicationCode: CPRNT"})
     @POST("/CoPilotServices/UploadLogFile.aspx")
     Call<String> uploadAnalyticsLogs(@Body String message);
 }
