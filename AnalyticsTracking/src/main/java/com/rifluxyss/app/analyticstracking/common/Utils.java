@@ -17,14 +17,16 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-@SuppressLint("NewApi")
+
 public class Utils {
 
     public static String EMPTY = "";
@@ -35,18 +37,33 @@ public class Utils {
     public static final long HOUR_MILLIS = 60 * MINUTE_MILLIS;
     public static final long DAY_MILLIS = 24 * HOUR_MILLIS;
 
-    private final DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
-    private static final DateTimeFormatter legacyEventTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
 
-
+    @SuppressLint("newApi")
     public static LocalDateTime fromISODateTimeString(String value) {
         String valueDate = value != null ? value.trim() : EMPTY;
         return TextUtils.isEmpty(valueDate) ? LocalDateTime.MIN : LocalDateTime.parse(value, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
 
-    public static String toISODateTimeString(LocalDateTime dateTime) {
-        return dateTime == null ? EMPTY : dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    public static String toISODateTimeString(LocalDateTime localDateTime) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            return localDateTime == null ? EMPTY : localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        } else {
+
+            try {
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy hh:mm:ss a", Locale.US);
+                Date dateTime = dateFormat.parse(localDateTime.toString());
+                return dateFormat.format(dateTime != null ? dateTime : "").toLowerCase(Locale.ROOT);
+
+            } catch (ParseException exception) {
+                exception.printStackTrace();
+            }
+        }
+
+        return "";
     }
 
     public static String deviceModelCapitalized(String modelName) {
@@ -71,8 +88,14 @@ public class Utils {
         long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
 
-        return days != 0 ? LocalDateTime.now().plusDays(days).format(sdf) : hours != 0 ? LocalDateTime.now().plusHours(hours).format(sdf) :
-                minutes != 0 ? LocalDateTime.now().plusMinutes(minutes).format(sdf) : LocalDateTime.now().plusDays(seconds).format(sdf);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
+            return days != 0 ? LocalDateTime.now().plusDays(days).format(sdf) : hours != 0 ? LocalDateTime.now().plusHours(hours).format(sdf) :
+                    minutes != 0 ? LocalDateTime.now().plusMinutes(minutes).format(sdf) : LocalDateTime.now().plusDays(seconds).format(sdf);
+        }
+
+        return "";
     }
 
     public static String emptyIfNull(String str) {
