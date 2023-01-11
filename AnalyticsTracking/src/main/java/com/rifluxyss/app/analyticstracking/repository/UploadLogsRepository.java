@@ -39,14 +39,8 @@ public class UploadLogsRepository {
 
         Call call = mRestInterface.uploadAnalyticsLogs(logsPayLoad);
         Response response = call.execute();
-        if (response.isSuccessful())
-        {
-            mutableLiveData.postValue(new Gson().toJson(response.body()));
-        }
-        else
-        {
-            mutableLiveData.postValue(null);
-        }
+        String responseData = response.isSuccessful() ? new Gson().toJson(response.body()) : null;
+        mutableLiveData.postValue(responseData);
         return mutableLiveData;
     }
 }

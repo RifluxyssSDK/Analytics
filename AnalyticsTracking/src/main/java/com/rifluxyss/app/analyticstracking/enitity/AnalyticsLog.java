@@ -1,6 +1,7 @@
 package com.rifluxyss.app.analyticstracking.enitity;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.provider.Settings;
 
 import androidx.room.ColumnInfo;
@@ -8,8 +9,12 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.common.DateTimeUtils;
+import com.rifluxyss.app.analyticstracking.common.Utils;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 public class AnalyticsLog {
@@ -17,9 +22,8 @@ public class AnalyticsLog {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;
-    @SuppressLint("NewApi")
     @ColumnInfo(name = "EventTime")
-    public LocalDateTime eventTime = LocalDateTime.now();
+    public LocalDateTime eventTime = new DateTimeUtils().getLocalDateTime();
     @SuppressLint("HardwareIds")
     @ColumnInfo(name = "HostId")
     public String hostId = Settings.Secure.getString(AppManagerSingleton.getInstance().getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -29,9 +33,8 @@ public class AnalyticsLog {
     public String locationNbr;
     @ColumnInfo(name = "RouteNbr")
     public Number routNbr;
-    @SuppressLint("NewApi")
     @ColumnInfo(name = "Day")
-    public Number day = LocalDateTime.now().getDayOfWeek().getValue();
+    public Number day = new DateTimeUtils().getWeekOfDay();
     @SuppressLint("NewApi")
     @ColumnInfo(name = "Logger")
     public String logger;
