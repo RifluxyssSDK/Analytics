@@ -1,10 +1,7 @@
 package com.rifluxyss.app.analyticstracking.repository;
 
-import android.os.AsyncTask;
 
 import androidx.lifecycle.MutableLiveData;
-
-import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.api.RestAPi;
 import com.rifluxyss.app.analyticstracking.api.RestInterface;
 
@@ -19,7 +16,7 @@ public class UploadLogsRepository {
 
     private UploadLogsRepository mUploadLogsRepository;
 
-    private RestInterface mRestInterface;
+    private final RestInterface mRestInterface;
 
     public UploadLogsRepository getInstance(){
         if (mUploadLogsRepository == null){

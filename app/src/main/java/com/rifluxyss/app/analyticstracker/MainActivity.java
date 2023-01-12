@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("NewApi")
     @Override
     protected void onResume() {
         super.onResume();
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             try {
                 new Logger().uploadLogsAPi(mViewModel).observe(this, response -> {
                     String responseData = response != null ? response : "failure";
-                    Log.e("status", "get Response===> " + responseData);
                 });
 
             } catch (Throwable throwable) {
