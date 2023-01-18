@@ -1,7 +1,5 @@
 package com.rifluxyss.app.analyticstracking.log;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
@@ -11,10 +9,8 @@ import java.util.List;
 
 public class Analytics extends AppManagerSingleton {
 
-    private final Context mContext;
 
     public Analytics() {
-        this.mContext = AppManagerSingleton.getInstance().getContext();
     }
 
     public void insert(AnalyticsLog analyticsLog) {

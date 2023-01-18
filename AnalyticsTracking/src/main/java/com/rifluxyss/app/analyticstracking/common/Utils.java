@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 public class Utils {
 
     public static String EMPTY = "";
-    public static String fileName = "jobSchedule.json";
 
     public static final long SECOND_MILLIS = 1000;
     public static final long MINUTE_MILLIS = 60 * SECOND_MILLIS;
