@@ -1,6 +1,5 @@
 package com.rifluxyss.app.analyticstracking.upload;
 
-import android.util.Log;
 import android.util.Xml;
 
 import androidx.lifecycle.MutableLiveData;

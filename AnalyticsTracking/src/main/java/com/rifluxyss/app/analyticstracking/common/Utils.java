@@ -1,27 +1,14 @@
 package com.rifluxyss.app.analyticstracking.common;
 
-import static android.content.Context.WIFI_SERVICE;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
