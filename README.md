@@ -2,6 +2,10 @@ AnalyticsTracking
 ===============
 Analytics library, it's helps to store your log details from the given data.
 
+### Description
+
+* This is a simple and straight forward library for store and get user analytics through your application usage.
+
 ### How to integrate into your app ?
 
 Integrating the project is simple, All you need to do is follow the below steps.
@@ -55,9 +59,6 @@ In order to Start using Analytics Tracker Upload the Data in API
 * LocalDateTime
 * Exception Handling
 
-### Description
-
-* This is a simple and straight forward library for store and get user analytics through your application usage.
 
 ### Authors
 

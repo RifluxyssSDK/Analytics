@@ -41,11 +41,20 @@ public class DateTimeUtils {
      */
     public String getDateTime(LocalDateTime localDateTime) throws ParseException {
 
-        // SimpleDateFormat to get displaying date in MM/dd/yy hh:mm:ss a format
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy hh:mm:ss a", Locale.US);
-        //parse() method of a Date class
-        Date dateTime = dateFormat.parse(localDateTime.toString());
-        // Date  used to get an instance of LocalDateTime from a string such as '01-18-2023 05:30:22 am' passed as parameter.
-        return dateFormat.format(dateTime != null ? dateTime : "").toLowerCase(Locale.ROOT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            DateTimeFormatter legacyEventTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
+            return localDateTime.format(legacyEventTimeFormatter).toLowerCase(Locale.ROOT);
+
+        } else {
+
+            // SimpleDateFormat to get displaying date in MM/dd/yy hh:mm:ss a format
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy hh:mm:ss a", Locale.US);
+            //parse() method of a Date class
+            Date dateTime = dateFormat.parse(localDateTime.toString());
+            // Date  used to get an instance of LocalDateTime from a string such as '01-18-2023 05:30:22 am' passed as parameter.
+            return dateFormat.format(dateTime != null ? dateTime : "").toLowerCase(Locale.ROOT);
+
+        }
     }
 }
