@@ -4,16 +4,6 @@ import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
-
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-import java.util.Collections;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
@@ -27,7 +17,7 @@ public class RestAPi {
 
     /**
      * @param converterFactory of Converter.Factory
-     * @param level            of HttpLoggingInterceptor.Level
+     * @param level of HttpLoggingInterceptor.Level
      * @return Retrofit
      */
     @NonNull
