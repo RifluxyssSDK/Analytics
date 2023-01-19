@@ -1,0 +1,15 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+
+com.rifluxyss.app.analyticstracking
+com.rifluxyss.app.analyticstracking.api
+com.rifluxyss.app.analyticstracking.common
+com.rifluxyss.app.analyticstracking.converters
+com.rifluxyss.app.analyticstracking.dao
+com.rifluxyss.app.analyticstracking.database
+com.rifluxyss.app.analyticstracking.enitity
+com.rifluxyss.app.analyticstracking.log
+com.rifluxyss.app.analyticstracking.repository
+com.rifluxyss.app.analyticstracking.upload
+com.rifluxyss.app.analyticstracking.viewmodel
+

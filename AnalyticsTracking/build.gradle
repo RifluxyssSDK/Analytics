@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -24,6 +26,24 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets'
+            }
+        }
+    }
+
+    tasks.dokkaHtml.configure {
+        outputDirectory.set(file("../Analytics/documentation/html"))
+    }
+    tasks.dokkaJavadoc.configure {
+        outputDirectory.set(file("../Analytics/documentation/javadoc"))
+    }
+    tasks.dokkaGfm.configure {
+        outputDirectory.set(file("../Analytics/documentation/gfm"))
     }
 }
 

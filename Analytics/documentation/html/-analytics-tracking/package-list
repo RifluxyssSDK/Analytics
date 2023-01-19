@@ -1,0 +1,109 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.rifluxyss.app.analyticstracking.api////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.api/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.api/RestAPi///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.api/-rest-a-pi/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.api/RestAPi/getClient/#retrofit2.Converter.Factory#okhttp3.logging.HttpLoggingInterceptor.Level/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.api/-rest-a-pi/get-client.html
+$dokka.location:com.rifluxyss.app.analyticstracking.api/RestInterface///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.api/-rest-interface/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.api/RestInterface/uploadAnalyticsLogs/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.api/-rest-interface/upload-analytics-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/DateTimeUtils///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-date-time-utils/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/DateTimeUtils/getDateTime/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-date-time-utils/get-date-time.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/DateTimeUtils/getLocalDateTime/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-date-time-utils/get-local-date-time.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/DateTimeUtils/getWeekOfDay/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-date-time-utils/get-week-of-day.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/DAY_MILLIS/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/-d-a-y_-m-i-l-l-i-s.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/EMPTY/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/-e-m-p-t-y.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/HOUR_MILLIS/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/-h-o-u-r_-m-i-l-l-i-s.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/MINUTE_MILLIS/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/-m-i-n-u-t-e_-m-i-l-l-i-s.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/SECOND_MILLIS/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/-s-e-c-o-n-d_-m-i-l-l-i-s.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/deviceModelCapitalized/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/device-model-capitalized.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/emptyIfNull/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/empty-if-null.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/fromISODateTimeString/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/from-i-s-o-date-time-string.html
+$dokka.location:com.rifluxyss.app.analyticstracking.common/Utils/toISODateTimeString/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.common/-utils/to-i-s-o-date-time-string.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters/DateTimeConverter///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/-date-time-converter/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters/DateTimeConverter/fromDateTimeString/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/-date-time-converter/from-date-time-string.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters/DateTimeConverter/toDateTimeString/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/-date-time-converter/to-date-time-string.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters/NumberConverters///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/-number-converters/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters/NumberConverters/fromNumberString/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/-number-converters/from-number-string.html
+$dokka.location:com.rifluxyss.app.analyticstracking.converters/NumberConverters/fromNumberValue/#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.converters/-number-converters/from-number-value.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/deleteAllLog/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/delete-all-log.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/deleteBefore/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/delete-before.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/deleteBeforeDays/#java.util.List<com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog>/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/delete-before-days.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getAll/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-all.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getBeforeSpecificLogs/#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-before-specific-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getListHostIDData/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-list-host-i-d-data.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getListLocationRouteData/#java.lang.String#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-list-location-route-data.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getListUserData/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-list-user-data.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getSpecificDateTimeLogs/#java.time.LocalDateTime#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-specific-date-time-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/getSpecificLogs/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/get-specific-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/insert/#com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/insert.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/insert/#java.util.List<com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog>/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/insert.html
+$dokka.location:com.rifluxyss.app.analyticstracking.dao/AnalyticsLogDao/readBeforeDateCount/#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.dao/-analytics-log-dao/read-before-date-count.html
+$dokka.location:com.rifluxyss.app.analyticstracking.database////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.database/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.database/AnalyticsDatabase///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.database/-analytics-database/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.database/AnalyticsDatabase/build/#android.content.Context/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.database/-analytics-database/build.html
+$dokka.location:com.rifluxyss.app.analyticstracking.database/MainDatabase///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.database/-main-database/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.database/MainDatabase/analyticsLogDaoLogDao/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.database/-main-database/analytics-log-dao-log-dao.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/addtlDesc/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/addtl-desc.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/addtlNbr/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/addtl-nbr.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/day/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/day.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/eventNbr/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/event-nbr.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/eventTime/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/event-time.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/hostId/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/host-id.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/id/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/id.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/locationNbr/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/location-nbr.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/logger/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/logger.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/routNbr/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/rout-nbr.html
+$dokka.location:com.rifluxyss.app.analyticstracking.enitity/AnalyticsLog/userID/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.enitity/-analytics-log/user-i-d.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/Analytics/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/-analytics.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/deleteAllLog/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/delete-all-log.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/deleteBeforeDateLog/#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/delete-before-date-log.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/deleteBeforeDateLog/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/delete-before-date-log.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/deleteLogs/#java.util.List<com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog>/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/delete-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getAllLog/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-all-log.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getDateTimeLogs/#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-date-time-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getDateWeekLogs/#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-date-week-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getListAnalyticsHostID/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-list-analytics-host-i-d.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getListAnalyticsLocationRoute/#java.lang.String#java.lang.Number/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-list-analytics-location-route.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getListAnalyticsUserId/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-list-analytics-user-id.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/getSpecificDateTimeLogs/#java.time.LocalDateTime#java.time.LocalDateTime/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/get-specific-date-time-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/insert/#com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/insert.html
+$dokka.location:com.rifluxyss.app.analyticstracking.log/Analytics/insert/#java.util.List<com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog>/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.log/-analytics/insert.html
+$dokka.location:com.rifluxyss.app.analyticstracking.repository////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.repository/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.repository/UploadLogsRepository///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.repository/-upload-logs-repository/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.repository/UploadLogsRepository/UploadLogsRepository/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.repository/-upload-logs-repository/-upload-logs-repository.html
+$dokka.location:com.rifluxyss.app.analyticstracking.repository/UploadLogsRepository/getInstance/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.repository/-upload-logs-repository/get-instance.html
+$dokka.location:com.rifluxyss.app.analyticstracking.repository/UploadLogsRepository/uploadLogs/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.repository/-upload-logs-repository/upload-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking.upload////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.upload/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.upload/Logger///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.upload/-logger/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.upload/Logger/upload/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.upload/-logger/upload.html
+$dokka.location:com.rifluxyss.app.analyticstracking.upload/Logger/uploadLogsAPi/#com.rifluxyss.app.analyticstracking.viewmodel.UploadLogsViewModel/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.upload/-logger/upload-logs-a-pi.html
+$dokka.location:com.rifluxyss.app.analyticstracking.viewmodel////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.viewmodel/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.viewmodel/UploadLogsViewModel///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.viewmodel/-upload-logs-view-model/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking.viewmodel/UploadLogsViewModel/init/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.viewmodel/-upload-logs-view-model/init.html
+$dokka.location:com.rifluxyss.app.analyticstracking.viewmodel/UploadLogsViewModel/uploadLogs/#java.lang.String/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking.viewmodel/-upload-logs-view-model/upload-logs.html
+$dokka.location:com.rifluxyss.app.analyticstracking////PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking/AppManagerSingleton///PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking/-app-manager-singleton/index.html
+$dokka.location:com.rifluxyss.app.analyticstracking/AppManagerSingleton/context/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking/-app-manager-singleton/context.html
+$dokka.location:com.rifluxyss.app.analyticstracking/AppManagerSingleton/getInstance/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking/-app-manager-singleton/get-instance.html
+$dokka.location:com.rifluxyss.app.analyticstracking/AppManagerSingleton/initialize/#android.content.Context/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking/-app-manager-singleton/initialize.html
+$dokka.location:com.rifluxyss.app.analyticstracking/AppManagerSingleton/localDatabase/#/PointingToDeclaration/-analytics-tracking/com.rifluxyss.app.analyticstracking/-app-manager-singleton/local-database.html
+com.rifluxyss.app.analyticstracking
+com.rifluxyss.app.analyticstracking.api
+com.rifluxyss.app.analyticstracking.common
+com.rifluxyss.app.analyticstracking.converters
+com.rifluxyss.app.analyticstracking.dao
+com.rifluxyss.app.analyticstracking.database
+com.rifluxyss.app.analyticstracking.enitity
+com.rifluxyss.app.analyticstracking.log
+com.rifluxyss.app.analyticstracking.repository
+com.rifluxyss.app.analyticstracking.upload
+com.rifluxyss.app.analyticstracking.viewmodel
+
