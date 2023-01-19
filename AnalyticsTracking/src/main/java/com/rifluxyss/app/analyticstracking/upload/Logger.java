@@ -36,7 +36,6 @@ public class Logger {
         serializer.setOutput(writer);
         serializer.startDocument(null, null);
 
-        List<AnalyticsLog> analyticsLogs = new Analytics().getAllLog();
         serializer.startTag(null, "LogEntry");
         serializer.attribute(null, "EventTime", new DateTimeUtils().getDateTime(analytics.eventTime));
         serializer.attribute(null, "HostId", Utils.emptyIfNull(analytics.hostId));
