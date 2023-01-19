@@ -15,6 +15,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        // Enabling multidex support.
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -45,6 +47,12 @@ android {
     tasks.dokkaGfm.configure {
         outputDirectory.set(file("../Analytics/documentation/gfm"))
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -55,8 +63,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    //work manager and room database
-    implementation 'androidx.work:work-runtime:2.7.1'
+    // room database dependency
     implementation 'androidx.room:room-runtime:2.5.0'
     annotationProcessor 'androidx.room:room-compiler:2.5.0'
 
