@@ -53,7 +53,6 @@ In order to Start using Analytics Tracker Upload the Data in API
 * Room Database
 * Retrofit2
 * LocalDateTime
-* Number
 * Exception Handling
 
 ### Description
