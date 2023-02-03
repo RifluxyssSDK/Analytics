@@ -27,9 +27,9 @@ public class DateTimeUtils {
      * The Calendar.getInstance() method in Calendar class is used to get a calendar using the current Day of week and locale of the system.
      *
      * @return Week of the Day integer value
-     * getWeekOfDay() to get a calendar using the current Day of week integer value
+     * getDayOfWeek() to get a calendar using the current Day of week integer value
      */
-    public Integer getWeekOfDay() {
+    public Integer getDayOfWeek() {
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK);
     }

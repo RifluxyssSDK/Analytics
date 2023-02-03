@@ -48,7 +48,7 @@ public class AnalyticsLog {
 
     /** * Initialize the Number variable of day */
     @ColumnInfo(name = "Day")
-    public Number day = new DateTimeUtils().getWeekOfDay();
+    public Number day = new DateTimeUtils().getDayOfWeek();
 
     /** * Initialize the String variable of logger */
     @ColumnInfo(name = "Logger")
