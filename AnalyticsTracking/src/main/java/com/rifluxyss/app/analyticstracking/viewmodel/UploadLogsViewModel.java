@@ -8,13 +8,25 @@ import com.rifluxyss.app.analyticstracking.repository.UploadLogsRepository;
 import java.io.IOException;
 
 
+/**
+ * This class is APi ViewModels
+ */
 public class UploadLogsViewModel extends ViewModel {
 
+    /**
+     * Initialization of mutableLiveData
+     */
     private MutableLiveData<String> mutableLiveData;
+    /**
+     * Initialization of mUploadLogsRepository
+     */
     private UploadLogsRepository mUploadLogsRepository;
 
-    public void init(){
-        if (mutableLiveData != null){
+    /**
+     * Initialization of APi Repository of   UploadLogsRepository Object creation
+     */
+    public void init() {
+        if (mutableLiveData != null) {
             return;
         }
         mUploadLogsRepository = new UploadLogsRepository().getInstance();
