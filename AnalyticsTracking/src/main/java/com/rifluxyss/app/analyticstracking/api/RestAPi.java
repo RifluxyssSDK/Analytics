@@ -4,6 +4,10 @@ import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
+
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.R;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
@@ -13,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Class of RestAPI
  */
-public class RestAPi {
+public class RestAPi extends AppManagerSingleton {
 
     /**
      * @param converterFactory of Converter.Factory
@@ -23,7 +27,7 @@ public class RestAPi {
     @NonNull
     public Retrofit getClient(Converter.Factory converterFactory, HttpLoggingInterceptor.Level level) {
         //Initialize the variable of API URL String
-        MutableLiveData<String> UploadLogsURL = new MutableLiveData<>("https://cpas100.na.cintas.com/");
+        MutableLiveData<String> UploadLogsURL = new MutableLiveData<>(getInstance().getContext().getString(R.string.str_apiUrl));
         //Initialize the Retrofit.Builder of class with variable
         return new Retrofit.Builder().baseUrl(UploadLogsURL.getValue()).callbackExecutor(AsyncTask.THREAD_POOL_EXECUTOR).addConverterFactory(GsonConverterFactory.create()).client(createClient(level)).addConverterFactory(converterFactory).build();
     }

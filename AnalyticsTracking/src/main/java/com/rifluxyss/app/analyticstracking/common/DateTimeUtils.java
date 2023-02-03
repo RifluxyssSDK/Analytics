@@ -3,6 +3,9 @@ package com.rifluxyss.app.analyticstracking.common;
 import android.annotation.SuppressLint;
 import android.os.Build;
 
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -11,7 +14,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateTimeUtils {
+public class DateTimeUtils extends AppManagerSingleton {
+
+    protected String dateTimeFormat = getInstance().getContext().getString(R.string.str_datetimeFormat);
 
     /**
      * @return LocalDateTime
@@ -43,17 +48,17 @@ public class DateTimeUtils {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            DateTimeFormatter legacyEventTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
+            DateTimeFormatter legacyEventTimeFormatter = DateTimeFormatter.ofPattern(dateTimeFormat);
             return localDateTime.format(legacyEventTimeFormatter).toLowerCase(Locale.ROOT);
 
         } else {
 
             // SimpleDateFormat to get displaying date in MM/dd/yy hh:mm:ss a format
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy hh:mm:ss a", Locale.US);
+            SimpleDateFormat dateFormat = new SimpleDateFormat(dateTimeFormat, Locale.US);
             //parse() method of a Date class
             Date dateTime = dateFormat.parse(localDateTime.toString());
             // Date  used to get an instance of LocalDateTime from a string such as '01-18-2023 05:30:22 am' passed as parameter.
-            return dateFormat.format(dateTime != null ? dateTime : "").toLowerCase(Locale.ROOT);
+            return dateFormat.format(dateTime != null ? dateTime : getInstance().getContext().getString(R.string.empty_string)).toLowerCase(Locale.ROOT);
 
         }
     }

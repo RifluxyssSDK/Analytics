@@ -7,6 +7,9 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -19,12 +22,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * Initialize the Utils Class
  */
-public class Utils {
+public class Utils extends AppManagerSingleton {
 
     /**
      * Initialization of String variable
      */
-    public static String EMPTY = "";
+    public static String EMPTY = getInstance().getContext().getString(R.string.empty_string);
 
     /**
      * Initialization of long variable SECOND_MILLIS
@@ -46,13 +49,18 @@ public class Utils {
      */
     public static final long DAY_MILLIS = 24 * HOUR_MILLIS;
 
+    /**
+     * Initialization of String variable of dateTimeFormat
+     */
+    protected String dateTimeFormat = getInstance().getContext().getString(R.string.str_datetimeFormat);
+
 
     /**
      * @param value of Current Date Time Value
      * @return LocalDateTime value
      */
     @SuppressLint("newApi")
-    public static LocalDateTime fromISODateTimeString(String value) {
+    public LocalDateTime fromISODateTimeString(String value) {
         String valueDate = value != null ? value.trim() : EMPTY;
         return TextUtils.isEmpty(valueDate) ? LocalDateTime.MIN : LocalDateTime.parse(value, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
@@ -62,7 +70,7 @@ public class Utils {
      * @param localDateTime of value
      * @return the LocalDateTime of String Value
      */
-    public static String toISODateTimeString(LocalDateTime localDateTime) {
+    public String toISODateTimeString(LocalDateTime localDateTime) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             return localDateTime == null ? EMPTY : localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
@@ -71,9 +79,9 @@ public class Utils {
 
             try {
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy hh:mm:ss a", Locale.US);
+                SimpleDateFormat dateFormat = new SimpleDateFormat(dateTimeFormat, Locale.US);
                 Date dateTime = dateFormat.parse(localDateTime.toString());
-                return dateFormat.format(dateTime != null ? dateTime : "").toLowerCase(Locale.ROOT);
+                return dateFormat.format(dateTime != null ? dateTime : EMPTY).toLowerCase(Locale.ROOT);
 
             } catch (ParseException exception) {
                 exception.printStackTrace();

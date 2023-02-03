@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_apiUrl">https://cpas100.na.cintas.com/</string>
+    <string name="str_datetimeFormat">MM/dd/yy hh:mm:ss a</string>
+    <string name="empty_string"/>
+    <string name="str_logentry">LogEntry</string>
+    <string name="str_eventTime">EventTime</string>
+    <string name="str_hostID">HostId</string>
+    <string name="str_userId">UserId</string>
+    <string name="str_locationNbr">LocationNbr</string>
+    <string name="str_routeNbr">RouteNbr</string>
+    <string name="str_day">Day</string>
+    <string name="str_logger">Logger</string>
+    <string name="str_eventNbr">EventNbr</string>
+    <string name="str_addtlDesc">AddtlDesc</string>
+    <string name="str_addtlNbr">AddtlNbr</string>
+</resources>

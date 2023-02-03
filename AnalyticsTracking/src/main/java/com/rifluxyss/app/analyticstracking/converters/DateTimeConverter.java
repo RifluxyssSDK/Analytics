@@ -15,7 +15,7 @@ public class DateTimeConverter {
      */
     @TypeConverter
     public static LocalDateTime fromDateTimeString(String value) {
-        return Utils.fromISODateTimeString(value);
+        return new Utils().fromISODateTimeString(value);
     }
 
     /**
@@ -24,6 +24,6 @@ public class DateTimeConverter {
      */
     @TypeConverter
     public static String toDateTimeString(LocalDateTime value) {
-        return Utils.toISODateTimeString(value);
+        return new Utils().toISODateTimeString(value);
     }
 }

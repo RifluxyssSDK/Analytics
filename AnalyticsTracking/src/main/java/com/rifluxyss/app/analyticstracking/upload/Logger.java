@@ -4,6 +4,8 @@ import android.util.Xml;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.R;
 import com.rifluxyss.app.analyticstracking.common.DateTimeUtils;
 import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
@@ -17,7 +19,7 @@ import java.io.StringWriter;
 import java.text.ParseException;
 import java.util.List;
 
-public class Logger {
+public class Logger extends AppManagerSingleton {
 
     public String uploadData() throws IOException,ParseException {
 
@@ -36,18 +38,22 @@ public class Logger {
         serializer.setOutput(writer);
         serializer.startDocument(null, null);
 
-        serializer.startTag(null, "LogEntry");
-        serializer.attribute(null, "EventTime", new DateTimeUtils().getDateTime(analytics.eventTime));
-        serializer.attribute(null, "HostId", Utils.emptyIfNull(analytics.hostId));
-        serializer.attribute(null, "UserId", analytics.userID);
-        serializer.attribute(null, "LocationNbr", analytics.locationNbr);
-        serializer.attribute(null, "RouteNbr", String.valueOf(analytics.routNbr));
-        serializer.attribute(null, "Day", String.valueOf(analytics.day));
-        serializer.attribute(null, "Logger", Utils.emptyIfNull(analytics.logger));
-        serializer.attribute(null, "EventNbr", String.valueOf(analytics.eventNbr));
-        serializer.attribute(null, "AddtlDesc", String.valueOf(analytics.addtlDesc));
-        serializer.attribute(null, "AddtlNbr", String.valueOf(analytics.addtlNbr));
-        serializer.endTag(null, "LogEntry");
+        String eventTime = new DateTimeUtils().getDateTime(analytics.eventTime) != null ? new DateTimeUtils().getDateTime(analytics.eventTime) : Utils.EMPTY;
+        String routeNbr  = analytics.routNbr != null ? String.valueOf(analytics.routNbr) : Utils.EMPTY;
+        String dayOfWeek  = analytics.day != null ? String.valueOf(analytics.day) : Utils.EMPTY;
+
+        serializer.startTag(null,  getInstance().getContext().getString(R.string.str_logentry));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_eventTime),eventTime);
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_hostID), Utils.emptyIfNull(analytics.hostId));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_userId), Utils.emptyIfNull(analytics.userID));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_locationNbr), Utils.emptyIfNull(analytics.locationNbr));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_routeNbr), routeNbr);
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_day), dayOfWeek);
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_logger), Utils.emptyIfNull(analytics.logger));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_eventNbr), String.valueOf(analytics.eventNbr));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_addtlDesc), String.valueOf(analytics.addtlDesc));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_addtlNbr), String.valueOf(analytics.addtlNbr));
+        serializer.endTag(null, getInstance().getContext().getString(R.string.str_logentry));
         serializer.endDocument();
        
         String xml = writer.toString();
