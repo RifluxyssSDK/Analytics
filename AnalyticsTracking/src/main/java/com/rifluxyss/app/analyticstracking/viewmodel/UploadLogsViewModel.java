@@ -32,6 +32,11 @@ public class UploadLogsViewModel extends ViewModel {
         mUploadLogsRepository = new UploadLogsRepository().getInstance();
     }
 
+    /**
+     * @param logsPayLoad params of logsPayLoad string value of API uploadlogdata
+     * @return Response of Data get in MutableLiveData
+     * @throws IOException
+     */
     public MutableLiveData<String> uploadLogs(String logsPayLoad) throws IOException {
 
         mutableLiveData = mUploadLogsRepository.uploadLogs(logsPayLoad);

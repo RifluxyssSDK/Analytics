@@ -43,7 +43,7 @@ public class Logger extends AppManagerSingleton {
         String dayOfWeek  = analytics.day != null ? String.valueOf(analytics.day) : Utils.EMPTY;
 
         serializer.startTag(null,  getInstance().getContext().getString(R.string.str_logentry));
-        serializer.attribute(null, getInstance().getContext().getString(R.string.str_eventTime),eventTime);
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_eventTime),Utils.EMPTY);
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_hostID), Utils.emptyIfNull(analytics.hostId));
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_userId), Utils.emptyIfNull(analytics.userID));
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_locationNbr), Utils.emptyIfNull(analytics.locationNbr));
