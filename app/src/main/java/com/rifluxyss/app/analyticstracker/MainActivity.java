@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
@@ -53,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
         UploadLogsViewModel mViewModel = new ViewModelProvider(this).get(UploadLogsViewModel.class);
         mViewModel.init();
 
+
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
             try {
                 new Logger().uploadLogsAPi(mViewModel).observe(this, response -> {
-                    String responseData = response != null ? response : "failure";
-                    Log.e("status", "get Response===> " + responseData);
+                    Log.e("status", "get Response===> " + response);
                 });
 
             } catch (Throwable throwable) {
