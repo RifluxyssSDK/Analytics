@@ -54,7 +54,7 @@ public class DateTimeUtils extends AppManagerSingleton {
         } else {
 
             // SimpleDateFormat to get displaying date in MM/dd/yy hh:mm:ss a format
-            SimpleDateFormat dateFormat = new SimpleDateFormat(dateTimeFormat, Locale.ENGLISH);
+            SimpleDateFormat dateFormat = new SimpleDateFormat(dateTimeFormat, Locale.US);
             //parse() method of a Date class
             Date dateTime = dateFormat.parse(localDateTime.toString());
             // Date  used to get an instance of LocalDateTime from a string such as '01-18-2023 05:30:22 am' passed as parameter.
