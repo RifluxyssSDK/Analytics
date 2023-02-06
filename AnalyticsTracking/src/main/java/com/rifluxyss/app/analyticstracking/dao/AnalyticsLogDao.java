@@ -15,11 +15,11 @@ import java.util.List;
 @Dao
 public interface AnalyticsLogDao {
 
-    /** * @param log of AnalyticsLog Data of Object */
+    /** * @param log of AnalyticsLog Data of Object insert Data in Database */
     @Insert
     void insert(AnalyticsLog log);
 
-    /** * @param logs of AnalyticsLog Data of List value */
+    /** * @param logs of AnalyticsLog Data of List value in Database */
     @Insert
     void insert(List<AnalyticsLog> logs);
 

@@ -56,6 +56,31 @@ public class Utils extends AppManagerSingleton {
 
 
     /**
+     * Initialization of String variable of expireDateTimeFormat
+     */
+    protected String expireDateTimeFormat = getInstance().getContext().getString(R.string.expire_datetime);
+
+    /**
+     * Initialization of String variable of Days
+     */
+    protected String days = getInstance().getContext().getString(R.string.str_days);
+
+    /**
+     * Initialization of String variable of Days
+     */
+    protected String hours = getInstance().getContext().getString(R.string.str_hours);
+
+    /**
+     * Initialization of String variable of Days
+     */
+    protected String minutes = getInstance().getContext().getString(R.string.str_minutes);
+    /**
+     * Initialization of String variable of Days
+     */
+    protected String seconds = getInstance().getContext().getString(R.string.str_seconds);
+
+
+    /**
      * @param value of Current Date Time Value
      * @return LocalDateTime value
      */
@@ -108,12 +133,12 @@ public class Utils extends AppManagerSingleton {
     @NonNull
     public String getMillis(long duration) {
 
-        long days = TimeUnit.MILLISECONDS.toDays(duration);
-        long hours = TimeUnit.MILLISECONDS.toHours(duration);
-        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-        return days != 0 ? days + " Days" : hours != 0 ? hours + " Hours" : minutes != 0 ? minutes + " Minutes" : seconds + " Seconds";
-
+        long daysDuration = TimeUnit.MILLISECONDS.toDays(duration);
+        long hoursDuration = TimeUnit.MILLISECONDS.toHours(duration);
+        long minutesDuration = TimeUnit.MILLISECONDS.toMinutes(duration);
+        long secondsDuration = TimeUnit.MILLISECONDS.toSeconds(duration);
+        return String.format("%s %s %s %s %s %s %s %s %s %s %s %s", daysDuration,EMPTY,days,hoursDuration,
+                EMPTY,hours,minutesDuration,EMPTY,minutes,secondsDuration,EMPTY,seconds);
     }
 
     /**
@@ -130,12 +155,12 @@ public class Utils extends AppManagerSingleton {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            DateTimeFormatter sdf = DateTimeFormatter.ofPattern("EEE, d MMM yyyy, HH:mm:ss a");
+            DateTimeFormatter sdf = DateTimeFormatter.ofPattern(expireDateTimeFormat);
             return days != 0 ? LocalDateTime.now().plusDays(days).format(sdf) : hours != 0 ? LocalDateTime.now().plusHours(hours).format(sdf) :
                     minutes != 0 ? LocalDateTime.now().plusMinutes(minutes).format(sdf) : LocalDateTime.now().plusDays(seconds).format(sdf);
         }
 
-        return "";
+        return EMPTY;
     }
 
     /**

@@ -2,6 +2,7 @@
 <resources>
     <string name="str_apiUrl">https://cpas100.na.cintas.com/</string>
     <string name="str_datetimeFormat">MM/dd/yy hh:mm:ss a</string>
+    <string name="str_database">analytics-data.db</string>
     <string name="empty_string"/>
     <string name="str_logentry">LogEntry</string>
     <string name="str_eventTime">EventTime</string>
@@ -14,4 +15,10 @@
     <string name="str_eventNbr">EventNbr</string>
     <string name="str_addtlDesc">AddtlDesc</string>
     <string name="str_addtlNbr">AddtlNbr</string>
+    <string name="expire_datetime">EEE, d MMM yyyy, HH:mm:ss a</string>
+    <string name="str_days">Days</string>
+    <string name="str_hours">Hours</string>
+    <string name="str_minutes">Minutes</string>
+    <string name="str_seconds">Seconds</string>
+
 </resources>

@@ -7,6 +7,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.TypeConverters;
 
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.R;
 import com.rifluxyss.app.analyticstracking.converters.DateTimeConverter;
 import com.rifluxyss.app.analyticstracking.converters.NumberConverters;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
@@ -20,13 +22,18 @@ import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 public abstract class AnalyticsDatabase extends MainDatabase {
 
     /**
+     * Initialization of String variable of databaseName
+     */
+    protected static String databaseName =  AppManagerSingleton.getInstance().getContext().getString(R.string.str_database);
+
+    /**
      * @param context of the Context class
      * @return the AnalyticsDatabase Class
      */
     @NonNull
     public static synchronized AnalyticsDatabase build(final Context context) {
 
-        return Room.databaseBuilder(context, AnalyticsDatabase.class, "analytics-data.db").allowMainThreadQueries()
+        return Room.databaseBuilder(context, AnalyticsDatabase.class, databaseName).allowMainThreadQueries()
                 .fallbackToDestructiveMigration().build();
     }
 }
