@@ -20,5 +20,6 @@
     <string name="str_hours">Hours</string>
     <string name="str_minutes">Minutes</string>
     <string name="str_seconds">Seconds</string>
+    <string name="exeception">Analytics Logs value should not be null</string>
 
 </resources>

@@ -31,13 +31,13 @@ public class Logger extends AppManagerSingleton {
      * @throws IOException    the io exception
      * @throws ParseException the parse exception
      */
-    public String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException,ParseException {
-
+    public String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
         StringBuilder stringBuilder = new StringBuilder();
         for (AnalyticsLog analytics : analyticsLogs) {
             stringBuilder.append(upload(analytics));
         }
         return stringBuilder.toString();
+       
     }
 
     /**
@@ -56,11 +56,11 @@ public class Logger extends AppManagerSingleton {
         serializer.startDocument(null, null);
 
         String eventTime = analytics.eventTime != null ? new DateTimeUtils().getDateTime(analytics.eventTime) : Utils.EMPTY;
-        String routeNbr  = analytics.routNbr != null ? String.valueOf(analytics.routNbr) : Utils.EMPTY;
-        String dayOfWeek  = analytics.day != null ? String.valueOf(analytics.day) : Utils.EMPTY;
+        String routeNbr = analytics.routNbr != null ? String.valueOf(analytics.routNbr) : Utils.EMPTY;
+        String dayOfWeek = analytics.day != null ? String.valueOf(analytics.day) : Utils.EMPTY;
 
-        serializer.startTag(null,  getInstance().getContext().getString(R.string.str_logentry));
-        serializer.attribute(null, getInstance().getContext().getString(R.string.str_eventTime),eventTime);
+        serializer.startTag(null, getInstance().getContext().getString(R.string.str_logentry));
+        serializer.attribute(null, getInstance().getContext().getString(R.string.str_eventTime), eventTime);
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_hostID), Utils.emptyIfNull(analytics.hostId));
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_userId), Utils.emptyIfNull(analytics.userID));
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_locationNbr), Utils.emptyIfNull(analytics.locationNbr));
@@ -72,7 +72,7 @@ public class Logger extends AppManagerSingleton {
         serializer.attribute(null, getInstance().getContext().getString(R.string.str_addtlNbr), String.valueOf(analytics.addtlNbr));
         serializer.endTag(null, getInstance().getContext().getString(R.string.str_logentry));
         serializer.endDocument();
-       
+
         String xml = writer.toString();
         return xml.substring(xml.indexOf("?>") + 2);
     }
@@ -86,8 +86,19 @@ public class Logger extends AppManagerSingleton {
      * @throws ParseException the parse exception
      */
     public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel, List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
-        String logsData = uploadData(analyticsLogs);
-        return mViewModel.uploadLogs(logsData);
+
+        if (analyticsLogs != null && analyticsLogs.size() > 0) {
+
+            MutableLiveData<String> exceptionData = new MutableLiveData<>();
+            exceptionData.postValue(getInstance().getContext().getString(R.string.exeception));
+            return exceptionData;
+
+        } else {
+
+            String logsData = uploadData(analyticsLogs);
+            return mViewModel.uploadLogs(logsData);
+        }
+
     }
 
 }
