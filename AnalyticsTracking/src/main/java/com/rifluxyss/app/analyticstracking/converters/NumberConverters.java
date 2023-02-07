@@ -5,9 +5,15 @@ import androidx.room.TypeConverter;
 import com.google.gson.Gson;
 
 
+/**
+ * The type Number converters.
+ */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class NumberConverters {
 
     /**
+     * From number value string.
+     *
      * @param value of the Number
      * @return the Number Based on the String value
      */
@@ -17,6 +23,8 @@ public class NumberConverters {
     }
 
     /**
+     * From number string number.
+     *
      * @param value of the String
      * @return Gson().fromJson() using based on the Number value return
      */

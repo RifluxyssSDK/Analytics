@@ -14,14 +14,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * The type Date time utils.
+ */
 public class DateTimeUtils extends AppManagerSingleton {
 
+    /**
+     * The Date time format.
+     */
     protected String dateTimeFormat = getInstance().getContext().getString(R.string.str_datetimeFormat);
 
     /**
-     * @return LocalDateTime
-     * Get the current Date Time of using LocalDateTime.now()
-     * getLocalDateTime()
+     * Gets local date time.
+     *
+     * @return LocalDateTime  Get the current Date Time of using LocalDateTime.now() getLocalDateTime()
      */
     @SuppressLint("NewApi")
     public LocalDateTime getLocalDateTime() {
@@ -31,8 +37,7 @@ public class DateTimeUtils extends AppManagerSingleton {
     /**
      * The Calendar.getInstance() method in Calendar class is used to get a calendar using the current Day of week and locale of the system.
      *
-     * @return Week of the Day integer value
-     * getDayOfWeek() to get a calendar using the current Day of week integer value
+     * @return Week of the Day integer value getDayOfWeek() to get a calendar using the current Day of week integer value
      */
     public Integer getDayOfWeek() {
         Calendar calendar = Calendar.getInstance();
@@ -40,9 +45,11 @@ public class DateTimeUtils extends AppManagerSingleton {
     }
 
     /**
+     * Gets date time.
+     *
      * @param localDateTime of LocalDateTime
      * @return String of DateTime
-     * @throws ParseException
+     * @throws ParseException the parse exception
      */
     public String getDateTime(LocalDateTime localDateTime) throws ParseException {
 

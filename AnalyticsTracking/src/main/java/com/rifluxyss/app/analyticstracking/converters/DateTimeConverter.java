@@ -4,12 +4,17 @@ import androidx.room.TypeConverter;
 
 import com.rifluxyss.app.analyticstracking.common.Utils;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 
+/**
+ * The type Date time converter.
+ */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class DateTimeConverter {
 
     /**
+     * From date time string local date time.
+     *
      * @param value to get the Current DateTime
      * @return the LocalDateTime value
      */
@@ -19,6 +24,8 @@ public class DateTimeConverter {
     }
 
     /**
+     * To date time string string.
+     *
      * @param value to get the Current DateTime
      * @return the LocalDateTime using return the String of DateTime
      */

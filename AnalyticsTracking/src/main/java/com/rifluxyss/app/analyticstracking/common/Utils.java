@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Initialize the Utils Class
  */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Utils extends AppManagerSingleton {
 
     /**
