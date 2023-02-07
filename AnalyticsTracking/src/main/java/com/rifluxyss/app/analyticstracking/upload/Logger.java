@@ -31,7 +31,7 @@ public class Logger extends AppManagerSingleton {
      * @throws IOException    the io exception
      * @throws ParseException the parse exception
      */
-    public String uploadData() throws IOException,ParseException {
+    public String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException,ParseException {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (AnalyticsLog analytics : analyticsLogs) {
@@ -85,8 +85,9 @@ public class Logger extends AppManagerSingleton {
      * @throws IOException    the io exception
      * @throws ParseException the parse exception
      */
-    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel) throws IOException, ParseException {
-        return mViewModel.uploadLogs(uploadData());
+    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel, List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
+        String logsData = uploadData(analyticsLogs);
+        return mViewModel.uploadLogs(logsData);
     }
 
 }
