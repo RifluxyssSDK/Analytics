@@ -1,6 +1,8 @@
 package com.rifluxyss.app.analyticstracking.repository;
 
 
+import android.os.AsyncTask;
+
 import androidx.lifecycle.MutableLiveData;
 import com.rifluxyss.app.analyticstracking.api.RestAPi;
 import com.rifluxyss.app.analyticstracking.api.RestInterface;
@@ -48,14 +50,23 @@ public class UploadLogsRepository {
      *
      * @param logsPayLoad the logs pay load
      * @return the mutable live data
-     * @throws IOException the io exception
      */
-    public MutableLiveData<String> uploadLogs(String logsPayLoad) throws IOException{
+    public MutableLiveData<String> uploadLogs(String logsPayLoad) {
         MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
-        Call call = mRestInterface.uploadAnalyticsLogs(logsPayLoad);
-        Response response = call.execute();
-        String responseData = response.isSuccessful() && response.body() != null ?  response.body().toString() : null;
-        mutableLiveData.postValue(responseData);
+        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+            Call call = mRestInterface.uploadAnalyticsLogs(logsPayLoad);
+
+            try {
+                Response response = call.execute();
+                String responseData = response.isSuccessful() && response.body() != null ? response.body().toString() : null;
+                mutableLiveData.postValue(responseData);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                mutableLiveData.postValue(e.getLocalizedMessage());
+            }
+        });
+
         return mutableLiveData;
     }
 }

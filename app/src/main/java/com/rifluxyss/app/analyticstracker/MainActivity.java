@@ -19,6 +19,7 @@ import com.rifluxyss.app.analyticstracking.viewmodel.UploadLogsViewModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,20 +55,18 @@ public class MainActivity extends AppCompatActivity {
         UploadLogsViewModel mViewModel = new ViewModelProvider(this).get(UploadLogsViewModel.class);
         mViewModel.init();
 
+        try {
 
-        AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
-            try {
-                List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
-                new Logger().uploadLogsAPi(mViewModel,analyticsLogs).observe(this, response -> {
-                    Log.e("status", "get Response===> " + response);
-                });
+            List<AnalyticsLog> logs = new ArrayList<>();
+            List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
+            new Logger().uploadLogsAPi(mViewModel, logs).observe(this, response -> {
+                Log.e("status", "get Response===> " + response);
+            });
 
-            } catch (Throwable throwable) {
-                Log.e("status", "get Response===> " + throwable.getLocalizedMessage());
-                throwable.printStackTrace();
-            }
-
-        });
+        } catch (Throwable throwable) {
+            Log.e("status", "get Response===> " + throwable.getLocalizedMessage());
+            throwable.printStackTrace();
+        }
 
     }
 

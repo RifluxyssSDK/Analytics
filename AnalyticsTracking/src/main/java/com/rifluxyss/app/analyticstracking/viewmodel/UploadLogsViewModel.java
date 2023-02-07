@@ -3,6 +3,8 @@ package com.rifluxyss.app.analyticstracking.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
+import com.rifluxyss.app.analyticstracking.R;
 import com.rifluxyss.app.analyticstracking.repository.UploadLogsRepository;
 
 import java.io.IOException;
@@ -39,10 +41,16 @@ public class UploadLogsViewModel extends ViewModel {
      * @return Response of Data get in MutableLiveData
      * @throws IOException the io exception
      */
-    public MutableLiveData<String> uploadLogs(String logsPayLoad) throws IOException {
+    public MutableLiveData<String> uploadLogs(String logsPayLoad) {
 
         mutableLiveData = mUploadLogsRepository.uploadLogs(logsPayLoad);
         return mutableLiveData;
 
+    }
+
+    public MutableLiveData<String> exceptionData() {
+        MutableLiveData<String> exceptionData = new MutableLiveData<>();
+        exceptionData.postValue(AppManagerSingleton.getInstance().getContext().getString(R.string.exeception));
+        return exceptionData;
     }
 }
