@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
             try {
-                new Logger().uploadLogsAPi(mViewModel).observe(this, response -> {
+                List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
+                new Logger().uploadLogsAPi(mViewModel,analyticsLogs).observe(this, response -> {
                     Log.e("status", "get Response===> " + response);
                 });
 

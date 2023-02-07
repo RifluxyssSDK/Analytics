@@ -113,7 +113,7 @@ public class Utils extends AppManagerSingleton {
             }
         }
 
-        return "";
+        return EMPTY;
     }
 
     /**

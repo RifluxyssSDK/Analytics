@@ -21,10 +21,10 @@ import java.util.List;
 
 public class Logger extends AppManagerSingleton {
 
-    public String uploadData() throws IOException,ParseException {
+
+    public String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException,ParseException {
 
         StringBuilder stringBuilder = new StringBuilder();
-        List<AnalyticsLog> analyticsLogs = new Analytics().getAllLog();
         for (AnalyticsLog analytics : analyticsLogs) {
             stringBuilder.append(upload(analytics));
         }
@@ -60,8 +60,9 @@ public class Logger extends AppManagerSingleton {
         return xml.substring(xml.indexOf("?>") + 2);
     }
 
-    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel) throws IOException, ParseException {
-        return mViewModel.uploadLogs(uploadData());
+    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel,List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
+        String logsData = uploadData(analyticsLogs);
+        return mViewModel.uploadLogs(logsData);
     }
 
 }
