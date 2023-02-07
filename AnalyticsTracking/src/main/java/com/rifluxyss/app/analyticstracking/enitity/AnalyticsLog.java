@@ -1,7 +1,6 @@
 package com.rifluxyss.app.analyticstracking.enitity;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.provider.Settings;
 
 import androidx.room.ColumnInfo;
@@ -10,13 +9,11 @@ import androidx.room.PrimaryKey;
 
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
 import com.rifluxyss.app.analyticstracking.common.DateTimeUtils;
-import com.rifluxyss.app.analyticstracking.common.Utils;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 /** * Initialize the of the Database Entity class */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 @Entity
 public class AnalyticsLog {
 

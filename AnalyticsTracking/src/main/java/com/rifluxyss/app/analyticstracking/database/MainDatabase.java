@@ -9,5 +9,10 @@ import com.rifluxyss.app.analyticstracking.dao.AnalyticsLogDao;
  */
 public abstract class MainDatabase extends RoomDatabase {
 
+    /**
+     * Analytics log dao log dao analytics log dao.
+     *
+     * @return the analytics log dao
+     */
     public abstract AnalyticsLogDao analyticsLogDaoLogDao();
 }

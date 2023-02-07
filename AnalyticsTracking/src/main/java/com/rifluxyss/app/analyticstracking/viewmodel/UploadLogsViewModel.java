@@ -33,9 +33,11 @@ public class UploadLogsViewModel extends ViewModel {
     }
 
     /**
+     * Upload logs mutable live data.
+     *
      * @param logsPayLoad params of logsPayLoad string value of API uploadlogdata
      * @return Response of Data get in MutableLiveData
-     * @throws IOException
+     * @throws IOException the io exception
      */
     public MutableLiveData<String> uploadLogs(String logsPayLoad) throws IOException {
 

@@ -12,12 +12,21 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+/**
+ * The type Upload logs repository.
+ */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class UploadLogsRepository {
 
     private UploadLogsRepository mUploadLogsRepository;
 
     private final RestInterface mRestInterface;
 
+    /**
+     * Get instance upload logs repository.
+     *
+     * @return the upload logs repository
+     */
     public UploadLogsRepository getInstance(){
         if (mUploadLogsRepository == null){
             mUploadLogsRepository = new UploadLogsRepository();
@@ -25,15 +34,24 @@ public class UploadLogsRepository {
         return mUploadLogsRepository;
     }
 
+    /**
+     * Instantiates a new Upload logs repository.
+     */
     public UploadLogsRepository(){
         mRestInterface = new RestAPi().getClient(ScalarsConverterFactory.create(),
                 HttpLoggingInterceptor.Level.BODY).create(RestInterface.class);
     }
 
 
+    /**
+     * Upload logs mutable live data.
+     *
+     * @param logsPayLoad the logs pay load
+     * @return the mutable live data
+     * @throws IOException the io exception
+     */
     public MutableLiveData<String> uploadLogs(String logsPayLoad) throws IOException{
         MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
-
         Call call = mRestInterface.uploadAnalyticsLogs(logsPayLoad);
         Response response = call.execute();
         String responseData = response.isSuccessful() && response.body() != null ?  response.body().toString() : null;

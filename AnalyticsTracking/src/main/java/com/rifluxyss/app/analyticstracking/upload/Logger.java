@@ -19,10 +19,19 @@ import java.io.StringWriter;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * The type Logger.
+ */
 public class Logger extends AppManagerSingleton {
 
-
-    public String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException,ParseException {
+    /**
+     * Upload data string.
+     *
+     * @return the string
+     * @throws IOException    the io exception
+     * @throws ParseException the parse exception
+     */
+    public String uploadData() throws IOException,ParseException {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (AnalyticsLog analytics : analyticsLogs) {
@@ -31,6 +40,14 @@ public class Logger extends AppManagerSingleton {
         return stringBuilder.toString();
     }
 
+    /**
+     * Upload string.
+     *
+     * @param analytics the analytics
+     * @return the string
+     * @throws IOException    the io exception
+     * @throws ParseException the parse exception
+     */
     public String upload(AnalyticsLog analytics) throws IOException, ParseException {
 
         XmlSerializer serializer = Xml.newSerializer();
@@ -60,9 +77,16 @@ public class Logger extends AppManagerSingleton {
         return xml.substring(xml.indexOf("?>") + 2);
     }
 
-    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel,List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
-        String logsData = uploadData(analyticsLogs);
-        return mViewModel.uploadLogs(logsData);
+    /**
+     * Upload logs a pi mutable live data.
+     *
+     * @param mViewModel the m view model
+     * @return the mutable live data
+     * @throws IOException    the io exception
+     * @throws ParseException the parse exception
+     */
+    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel) throws IOException, ParseException {
+        return mViewModel.uploadLogs(uploadData());
     }
 
 }
