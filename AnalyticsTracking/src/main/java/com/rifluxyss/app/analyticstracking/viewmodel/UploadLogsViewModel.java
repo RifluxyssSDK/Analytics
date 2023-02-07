@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
 import com.rifluxyss.app.analyticstracking.R;
+import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.repository.UploadLogsRepository;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class UploadLogsViewModel extends ViewModel {
 
     public MutableLiveData<String> exceptionData() {
         MutableLiveData<String> exceptionData = new MutableLiveData<>();
-        exceptionData.postValue(AppManagerSingleton.getInstance().getContext().getString(R.string.exeception));
+        exceptionData.postValue(Utils.EMPTY);
         return exceptionData;
     }
 }

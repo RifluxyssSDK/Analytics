@@ -37,7 +37,7 @@ public class Logger extends AppManagerSingleton {
             stringBuilder.append(upload(analytics));
         }
         return stringBuilder.toString();
-       
+
     }
 
     /**
@@ -94,8 +94,7 @@ public class Logger extends AppManagerSingleton {
 
         } else {
 
-            return mViewModel.exceptionData();
-
+            return new MutableLiveData<>();
         }
 
     }

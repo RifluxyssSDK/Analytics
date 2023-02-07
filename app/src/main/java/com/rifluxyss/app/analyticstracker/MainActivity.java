@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             List<AnalyticsLog> logs = new ArrayList<>();
             List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
-            new Logger().uploadLogsAPi(mViewModel, logs).observe(this, response -> {
+            new Logger().uploadLogsAPi(mViewModel, analyticsLogs).observe(this, response -> {
                 Log.e("status", "get Response===> " + response);
             });
 
