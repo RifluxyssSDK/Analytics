@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         analytics.insert(create("2", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 2.0f, 11, "Testkishanth"));
     }
 
-
+    @SuppressLint("NewApi")
     @Override
     protected void onResume() {
         super.onResume();

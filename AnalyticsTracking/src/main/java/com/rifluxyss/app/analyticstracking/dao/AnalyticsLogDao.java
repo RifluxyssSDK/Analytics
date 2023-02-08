@@ -46,22 +46,30 @@ public interface AnalyticsLogDao {
      * @return the LiveData<List<AnalyticsLog>> value
      */
     @Query("SELECT * FROM AnalyticsLog WHERE EventTime <= :localDateTime")
-    LiveData<List<AnalyticsLog>> getSpecificLogs(LocalDateTime localDateTime);
+    List<AnalyticsLog> getSpecificLogs(LocalDateTime localDateTime);
 
     /**
      * @param startDateTime of the LocalDateTime
      * @param endDateTime of the LocalDateTime
      * @return  the LiveData<List<AnalyticsLog>> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE EventTime <= :startDateTime LIKE EventTime >= :endDateTime")
-    LiveData<List<AnalyticsLog>> getSpecificDateTimeLogs(LocalDateTime startDateTime, LocalDateTime endDateTime);
+    @Query("SELECT * FROM AnalyticsLog WHERE EventTime >= :startDateTime LIKE EventTime <= :endDateTime")
+    List<AnalyticsLog> getSpecificDateTimeLogs(LocalDateTime startDateTime, LocalDateTime endDateTime);
+
+    /**
+     * @param startDay of the LocalDateTime
+     * @param endDay of the LocalDateTime
+     * @return  the LiveData<List<AnalyticsLog>> value
+     */
+    @Query("SELECT * FROM AnalyticsLog WHERE Day >= :startDay LIKE Day <= :endDay")
+    List<AnalyticsLog> getSpecificDayLogs(Number startDay, Number endDay);
 
     /**
      * @param day of Number value
      * @return the LiveData<List<AnalyticsLog>> value
      */
     @Query("SELECT * FROM AnalyticsLog WHERE Day <= :day")
-    LiveData<List<AnalyticsLog>> getBeforeSpecificLogs(Number day);
+    List<AnalyticsLog> getBeforeSpecificLogs(Number day);
 
     /**
      * @param localNbr of the String value

@@ -86,10 +86,11 @@ public class Logger extends AppManagerSingleton {
      */
     public MutableLiveData<String> uploadLogsAPi(List<AnalyticsLog> analyticsLogs) throws ParseException, IOException {
 
+        UploadLogsViewModel uploadLogsViewModel = new UploadLogsViewModel();
+        uploadLogsViewModel.init();
+
         if (analyticsLogs != null && analyticsLogs.size() > 0) {
 
-            UploadLogsViewModel uploadLogsViewModel = new UploadLogsViewModel();
-            uploadLogsViewModel.init();
             String logsData = uploadData(analyticsLogs);
             return uploadLogsViewModel.uploadLogs(logsData);
 

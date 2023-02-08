@@ -6,6 +6,7 @@ import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class Analytics extends AppManagerSingleton {
      * @param localDateTime the local date time
      * @return the date time logs
      */
-    public LiveData<List<AnalyticsLog>> getDateTimeLogs(LocalDateTime localDateTime) {
+    public List<AnalyticsLog> getDateTimeLogs(LocalDateTime localDateTime) {
         return localDatabase().analyticsLogDaoLogDao().getSpecificLogs(localDateTime);
     }
 
@@ -65,7 +66,7 @@ public class Analytics extends AppManagerSingleton {
      * @param day the day
      * @return the date week logs
      */
-    public LiveData<List<AnalyticsLog>> getDateWeekLogs(Number day) {
+    public List<AnalyticsLog> getDateWeekLogs(Number day) {
         return localDatabase().analyticsLogDaoLogDao().getBeforeSpecificLogs(day);
     }
 
@@ -76,8 +77,19 @@ public class Analytics extends AppManagerSingleton {
      * @param endDateTime  the end date time
      * @return the specific date time logs
      */
-    public LiveData<List<AnalyticsLog>> getSpecificDateTimeLogs(LocalDateTime startDayTime, LocalDateTime endDateTime) {
+    public List<AnalyticsLog> getSpecificDateTimeLogs(LocalDateTime startDayTime, LocalDateTime endDateTime) {
         return localDatabase().analyticsLogDaoLogDao().getSpecificDateTimeLogs(startDayTime,endDateTime);
+    }
+
+    /**
+     * Gets specific date time logs.
+     *
+     * @param startDayTime the start day time
+     * @param endDateTime  the end date time
+     * @return the specific date time logs
+     */
+    public List<AnalyticsLog> getSpecificDaysLogs(Number startDayTime, Number endDateTime) {
+        return localDatabase().analyticsLogDaoLogDao().getSpecificDayLogs(startDayTime,endDateTime);
     }
 
     /**

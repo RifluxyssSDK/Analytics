@@ -21,5 +21,6 @@
     <string name="str_minutes">Minutes</string>
     <string name="str_seconds">Seconds</string>
     <string name="exeception">Given logs list is null</string>
+    <string name="date_filter">yyyy-mm-dd</string>
 
 </resources>

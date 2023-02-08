@@ -40,8 +40,14 @@ public class DateTimeUtils extends AppManagerSingleton {
      * @return Week of the Day integer value getDayOfWeek() to get a calendar using the current Day of week integer value
      */
     public Integer getDayOfWeek() {
-        Calendar calendar = Calendar.getInstance();
-        return calendar.get(Calendar.DAY_OF_WEEK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            return LocalDateTime.now().getDayOfWeek().getValue() + 1;
+
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            return calendar.get(Calendar.DAY_OF_WEEK);
+        }
     }
 
     /**
