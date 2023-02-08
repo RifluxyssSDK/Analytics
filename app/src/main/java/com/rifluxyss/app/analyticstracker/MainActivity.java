@@ -61,17 +61,6 @@ public class MainActivity extends AppCompatActivity {
             Log.e("status","END Day====> " +LocalDateTime.now().getDayOfWeek().minus(0).getValue());
             Log.e("status","check Size Logs====> " + analyticsLogs1.size());
 
-            int dayOfWeek = new DateTimeUtils().getDayOfWeek();
-            List<AnalyticsLog> analyticsLogs2 = analytics.getDateWeekLogs(dayOfWeek);
-            Log.e("status","Start Day====> " +dayOfWeek);
-            Log.e("status","check Size Logs====> " + analyticsLogs2.size());
-
-            List<AnalyticsLog> analyticsLogs3 = analytics.getSpecificDateTimeLogs(LocalDateTime.now().minusDays(4),LocalDateTime.now().minusDays(1));
-            Log.e("status","Start StartTime ====> " +LocalDateTime.now().minusDays(4));
-            Log.e("status","Start Day====> " +LocalDateTime.now().minusDays(1));
-            Log.e("status","check Size Logs====> " + analyticsLogs3.size());
-
-
             List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
             new Logger().uploadLogsAPi(analyticsLogs).observe(this, response -> {
                 Log.e("status", "get Response===> " + response);
