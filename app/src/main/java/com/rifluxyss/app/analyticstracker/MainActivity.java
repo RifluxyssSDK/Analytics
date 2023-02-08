@@ -1,26 +1,15 @@
 package com.rifluxyss.app.analyticstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.rifluxyss.app.analyticstracking.common.DateTimeUtils;
-import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.upload.Logger;
-import com.rifluxyss.app.analyticstracking.viewmodel.UploadLogsViewModel;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("status","check Size Logs====> " + analyticsLogs1.size());
 
             List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
-            new Logger().uploadLogsAPi(analyticsLogs).observe(this, response -> {
-                Log.e("status", "get Response===> " + response);
-            });
+            new Logger().uploadLogsAPi(analyticsLogs).observe(this, response -> Log.e("status", "get Response===> " + response));
 
         } catch (Throwable throwable) {
             Log.e("status", "get Response===> " + throwable.getLocalizedMessage());
