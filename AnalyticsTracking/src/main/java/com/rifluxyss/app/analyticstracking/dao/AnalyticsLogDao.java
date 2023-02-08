@@ -1,6 +1,5 @@
 package com.rifluxyss.app.analyticstracking.dao;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,7 +26,7 @@ public interface AnalyticsLogDao {
      * @param day is the Day of week value
      * @return filtered the Day of the week value based on the List<AnalyticsLog> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE Day = :day")
+    @Query("SELECT * FROM AnalyticsLog WHERE Day LIKE :day")
     List<AnalyticsLog> readBeforeDateCount(Number day);
 
     /** * @param deleteAnalyticsLogs of Logs Data in Database */
@@ -38,14 +37,14 @@ public interface AnalyticsLogDao {
      * @param eventTime is the LocalDateTime value
      * @return filtered the eventTime value based on the int value
      */
-    @Query("DELETE FROM AnalyticsLog WHERE eventTime > :eventTime")
+    @Query("DELETE FROM AnalyticsLog WHERE EventTime LIKE :eventTime")
     int deleteBefore(LocalDateTime eventTime);
 
     /**
      * @param localDateTime of the LocalDateTime
      * @return the LiveData<List<AnalyticsLog>> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE EventTime <= :localDateTime")
+    @Query("SELECT * FROM AnalyticsLog WHERE EventTime LIKE :localDateTime")
     List<AnalyticsLog> getSpecificLogs(LocalDateTime localDateTime);
 
     /**
@@ -53,7 +52,7 @@ public interface AnalyticsLogDao {
      * @param endDateTime of the LocalDateTime
      * @return  the LiveData<List<AnalyticsLog>> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE EventTime >= :startDateTime LIKE EventTime <= :endDateTime")
+    @Query("SELECT * FROM 'AnalyticsLog' WHERE EventTime BETWEEN :startDateTime AND :endDateTime")
     List<AnalyticsLog> getSpecificDateTimeLogs(LocalDateTime startDateTime, LocalDateTime endDateTime);
 
     /**
@@ -61,14 +60,14 @@ public interface AnalyticsLogDao {
      * @param endDay of the LocalDateTime
      * @return  the LiveData<List<AnalyticsLog>> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE Day >= :startDay LIKE Day <= :endDay")
+    @Query("SELECT * FROM 'AnalyticsLog' WHERE Day BETWEEN :startDay AND :endDay")
     List<AnalyticsLog> getSpecificDayLogs(Number startDay, Number endDay);
 
     /**
      * @param day of Number value
      * @return the LiveData<List<AnalyticsLog>> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE Day <= :day")
+    @Query("SELECT * FROM AnalyticsLog WHERE Day LIKE :day")
     List<AnalyticsLog> getBeforeSpecificLogs(Number day);
 
     /**
@@ -76,21 +75,21 @@ public interface AnalyticsLogDao {
      * @param routeNbr of the Number value
      * @return the List<AnalyticsLog> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE LocationNbr = :localNbr AND RouteNbr = :routeNbr")
+    @Query("SELECT * FROM AnalyticsLog WHERE LocationNbr LIKE :localNbr AND RouteNbr LIKE :routeNbr")
     List<AnalyticsLog> getListLocationRouteData(String localNbr, Number routeNbr);
 
     /**
      * @param userID of the String value
      * @return the List<AnalyticsLog> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE UserId = :userID")
+    @Query("SELECT * FROM AnalyticsLog WHERE UserId LIKE :userID")
     List<AnalyticsLog> getListUserData(String userID);
 
     /**
      * @param hostID of the String value
      * @return the List<AnalyticsLog> value
      */
-    @Query("SELECT * FROM AnalyticsLog WHERE HostId = :hostID")
+    @Query("SELECT * FROM AnalyticsLog WHERE HostId LIKE :hostID")
     List<AnalyticsLog> getListHostIDData(String hostID);
 
     /**

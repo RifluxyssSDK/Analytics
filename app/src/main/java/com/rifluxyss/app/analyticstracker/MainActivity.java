@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.rifluxyss.app.analyticstracking.common.DateTimeUtils;
 import com.rifluxyss.app.analyticstracking.common.Utils;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
@@ -53,6 +54,23 @@ public class MainActivity extends AppCompatActivity {
         analytics.insert(create("3", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 3.0f, 11, "Testkishanth"));
 
         try {
+
+            List<AnalyticsLog> analyticsLogs1 = analytics.getSpecificDaysLogs(LocalDateTime.now().getDayOfWeek().minus(2).getValue(),
+                    LocalDateTime.now().getDayOfWeek().minus(0).getValue());
+            Log.e("status","Start Day====> " +LocalDateTime.now().getDayOfWeek().minus(2).getValue());
+            Log.e("status","END Day====> " +LocalDateTime.now().getDayOfWeek().minus(0).getValue());
+            Log.e("status","check Size Logs====> " + analyticsLogs1.size());
+
+            int dayOfWeek = new DateTimeUtils().getDayOfWeek();
+            List<AnalyticsLog> analyticsLogs2 = analytics.getDateWeekLogs(dayOfWeek);
+            Log.e("status","Start Day====> " +dayOfWeek);
+            Log.e("status","check Size Logs====> " + analyticsLogs2.size());
+
+            List<AnalyticsLog> analyticsLogs3 = analytics.getSpecificDateTimeLogs(LocalDateTime.now().minusDays(4),LocalDateTime.now().minusDays(1));
+            Log.e("status","Start StartTime ====> " +LocalDateTime.now().minusDays(4));
+            Log.e("status","Start Day====> " +LocalDateTime.now().minusDays(1));
+            Log.e("status","check Size Logs====> " + analyticsLogs3.size());
+
 
             List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
             new Logger().uploadLogsAPi(analyticsLogs).observe(this, response -> {

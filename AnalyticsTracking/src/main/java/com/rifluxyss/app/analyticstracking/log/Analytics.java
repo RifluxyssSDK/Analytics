@@ -84,12 +84,12 @@ public class Analytics extends AppManagerSingleton {
     /**
      * Gets specific date time logs.
      *
-     * @param startDayTime the start day time
-     * @param endDateTime  the end date time
+     * @param startDay the start day time
+     * @param endDay  the end date time
      * @return the specific date time logs
      */
-    public List<AnalyticsLog> getSpecificDaysLogs(Number startDayTime, Number endDateTime) {
-        return localDatabase().analyticsLogDaoLogDao().getSpecificDayLogs(startDayTime,endDateTime);
+    public List<AnalyticsLog> getSpecificDaysLogs(Number startDay, Number endDay) {
+        return localDatabase().analyticsLogDaoLogDao().getSpecificDayLogs(startDay,endDay);
     }
 
     /**
