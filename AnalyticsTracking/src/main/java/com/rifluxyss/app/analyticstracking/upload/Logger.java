@@ -31,7 +31,7 @@ public class Logger extends AppManagerSingleton {
      * @throws IOException    the io exception
      * @throws ParseException the parse exception
      */
-    public String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
+    private String uploadData(List<AnalyticsLog> analyticsLogs) throws IOException, ParseException {
         StringBuilder stringBuilder = new StringBuilder();
         for (AnalyticsLog analytics : analyticsLogs) {
             stringBuilder.append(upload(analytics));
@@ -48,7 +48,7 @@ public class Logger extends AppManagerSingleton {
      * @throws IOException    the io exception
      * @throws ParseException the parse exception
      */
-    public String upload(AnalyticsLog analytics) throws IOException, ParseException {
+    private String upload(AnalyticsLog analytics) throws IOException, ParseException {
 
         XmlSerializer serializer = Xml.newSerializer();
         StringWriter writer = new StringWriter();
@@ -80,17 +80,18 @@ public class Logger extends AppManagerSingleton {
     /**
      * Upload logs a pi mutable live data.
      *
-     * @param mViewModel the m view model
      * @return the mutable live data
      * @throws IOException    the io exception
      * @throws ParseException the parse exception
      */
-    public MutableLiveData<String> uploadLogsAPi(UploadLogsViewModel mViewModel, List<AnalyticsLog> analyticsLogs) throws ParseException, IOException {
+    public MutableLiveData<String> uploadLogsAPi(List<AnalyticsLog> analyticsLogs) throws ParseException, IOException {
 
         if (analyticsLogs != null && analyticsLogs.size() > 0) {
 
+            UploadLogsViewModel uploadLogsViewModel = new UploadLogsViewModel();
+            uploadLogsViewModel.init();
             String logsData = uploadData(analyticsLogs);
-            return mViewModel.uploadLogs(logsData);
+            return uploadLogsViewModel.uploadLogs(logsData);
 
         } else {
 

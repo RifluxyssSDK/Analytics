@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * This class is APi ViewModels
  */
-public class UploadLogsViewModel extends ViewModel {
+public class UploadLogsViewModel {
 
     /**
      * Initialization of mutableLiveData

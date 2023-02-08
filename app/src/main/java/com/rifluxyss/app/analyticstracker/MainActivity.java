@@ -52,14 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         analytics.insert(create("3", "ID=0d5867ee-1a71-4944-9737-fb906d8b7f9d|currentCustomerHelper Initialized0012702140", 3.0f, 11, "Testkishanth"));
 
-        UploadLogsViewModel mViewModel = new ViewModelProvider(this).get(UploadLogsViewModel.class);
-        mViewModel.init();
-
         try {
 
-            List<AnalyticsLog> logs = new ArrayList<>();
             List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
-            new Logger().uploadLogsAPi(mViewModel, analyticsLogs).observe(this, response -> {
+            new Logger().uploadLogsAPi(analyticsLogs).observe(this, response -> {
                 Log.e("status", "get Response===> " + response);
             });
 
