@@ -9,6 +9,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import com.rifluxyss.app.analyticstracking.AppManagerSingleton;
 import com.rifluxyss.app.analyticstracking.R;
@@ -82,6 +83,14 @@ public class Utils extends AppManagerSingleton {
      * Initialization of String variable of Days
      */
     protected String seconds = getInstance().getContext().getString(R.string.str_seconds);
+    /**
+     * Initialization of String variable of DCAPPCODE
+     */
+    public static final String DCAPPCODE = getInstance().getContext().getString(R.string.dcApp_code);
+    /**
+     * Initialization of String variable of DCAPPCODE
+     */
+    public static final String valSemiColan = getInstance().getContext().getString(R.string.str_semicol);
 
 
     /**
@@ -174,6 +183,11 @@ public class Utils extends AppManagerSingleton {
     public static String emptyIfNull(String value) {
         return value != null ? value : EMPTY;
     }
+
+    /**
+     * @return
+     */
+    public static MutableLiveData<String> noDataReturn() { return new MutableLiveData<>(); }
 
     /**
      * checkInternetConnection ConnectivityManager class using to know whether the internet connection is available or not.

@@ -23,5 +23,6 @@
     <string name="exeception">Given logs list is null</string>
     <string name="date_filter">yyyy-mm-dd</string>
     <string name="no_network">Please check your network and try again.</string>
-
+    <string name="dcApp_code">CP-SAPDC2</string>
+    <string name="str_semicol">;</string>
 </resources>

@@ -75,7 +75,7 @@ public class Logger extends AppManagerSingleton {
         serializer.endDocument();
 
         String xml = writer.toString();
-        return xml.substring(xml.indexOf("?>") + 2);
+        return String.format("%s%s%s",Utils.DCAPPCODE,Utils.valSemiColan,xml.substring(xml.indexOf("?>") + 2));
     }
 
     /**
@@ -99,7 +99,7 @@ public class Logger extends AppManagerSingleton {
 
             } else {
 
-                return noDataReturn();
+                return Utils.noDataReturn();
             }
 
         } else {
@@ -109,12 +109,8 @@ public class Logger extends AppManagerSingleton {
 
         }
 
-        return noDataReturn();
+        return Utils.noDataReturn();
 
-    }
-
-    public MutableLiveData<String> noDataReturn() {
-        return new MutableLiveData<>();
     }
 
 }

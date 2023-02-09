@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             List<AnalyticsLog> analyticsLogs1 = analytics.getSpecificDaysLogs(LocalDateTime.now().getDayOfWeek().minus(2).getValue(),
-                    LocalDateTime.now().getDayOfWeek().minus(0).getValue());
+                    LocalDateTime.now().getDayOfWeek().getValue());
             Log.e("status", "Start Day====> " + LocalDateTime.now().getDayOfWeek().minus(2).getValue());
             Log.e("status", "END Day====> " + LocalDateTime.now().getDayOfWeek().minus(0).getValue());
             Log.e("status", "check Size Logs====> " + analyticsLogs1.size());
