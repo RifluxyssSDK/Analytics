@@ -17,7 +17,7 @@ import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
  * Initialize the Database of the AnalyticsDatabase
  * Initialize the TypeConverters of the DateTime && Number store the Database
  */
-@Database(entities = {AnalyticsLog.class},version = 5, exportSchema = false)
+@Database(entities = {AnalyticsLog.class},version = 1, exportSchema = false)
 @TypeConverters({DateTimeConverter.class, NumberConverters.class})
 public abstract class AnalyticsDatabase extends MainDatabase {
 
@@ -32,7 +32,6 @@ public abstract class AnalyticsDatabase extends MainDatabase {
      */
     @NonNull
     public static synchronized AnalyticsDatabase build(final Context context) {
-
         return Room.databaseBuilder(context, AnalyticsDatabase.class, databaseName).allowMainThreadQueries()
                 .fallbackToDestructiveMigration().build();
     }

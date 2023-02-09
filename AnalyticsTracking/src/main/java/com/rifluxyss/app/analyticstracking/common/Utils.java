@@ -175,6 +175,10 @@ public class Utils extends AppManagerSingleton {
         return value != null ? value : EMPTY;
     }
 
+    /**
+     * checkInternetConnection ConnectivityManager class using to know whether the internet connection is available or not.
+     * @return Internet connection, connected or disconnected.
+     */
     public boolean checkInternetConnection() {
 
         ConnectivityManager connectivityManager = (ConnectivityManager)getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
