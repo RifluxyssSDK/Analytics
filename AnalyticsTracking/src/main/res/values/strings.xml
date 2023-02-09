@@ -22,5 +22,6 @@
     <string name="str_seconds">Seconds</string>
     <string name="exeception">Given logs list is null</string>
     <string name="date_filter">yyyy-mm-dd</string>
+    <string name="no_network">Please check your network and try again.</string>
 
 </resources>

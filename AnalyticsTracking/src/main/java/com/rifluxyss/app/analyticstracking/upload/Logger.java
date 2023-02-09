@@ -1,6 +1,7 @@
 package com.rifluxyss.app.analyticstracking.upload;
 
 import android.util.Xml;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -89,16 +90,31 @@ public class Logger extends AppManagerSingleton {
         UploadLogsViewModel uploadLogsViewModel = new UploadLogsViewModel();
         uploadLogsViewModel.init();
 
-        if (analyticsLogs != null && analyticsLogs.size() > 0) {
+        if (new Utils().checkInternetConnection()) {
 
-            String logsData = uploadData(analyticsLogs);
-            return uploadLogsViewModel.uploadLogs(logsData);
+            if (analyticsLogs != null && analyticsLogs.size() > 0) {
+
+                String logsData = uploadData(analyticsLogs);
+                return uploadLogsViewModel.uploadLogs(logsData);
+
+            } else {
+
+                return noDataReturn();
+            }
 
         } else {
 
-            return new MutableLiveData<>();
+            String noNetworkMessage = getInstance().getContext().getString(R.string.no_network);
+            Toast.makeText(getInstance().getContext(),noNetworkMessage,Toast.LENGTH_LONG).show();
+
         }
 
+        return noDataReturn();
+
+    }
+
+    public MutableLiveData<String> noDataReturn() {
+        return new MutableLiveData<>();
     }
 
 }

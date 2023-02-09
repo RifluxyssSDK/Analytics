@@ -2,6 +2,9 @@ package com.rifluxyss.app.analyticstracking.common;
 
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -172,5 +175,11 @@ public class Utils extends AppManagerSingleton {
         return value != null ? value : EMPTY;
     }
 
+    public boolean checkInternetConnection() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = (NetworkInfo) connectivityManager.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
 
 }

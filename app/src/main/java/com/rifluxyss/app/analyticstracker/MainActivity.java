@@ -9,6 +9,7 @@ import android.util.Log;
 import com.rifluxyss.app.analyticstracking.log.Analytics;
 import com.rifluxyss.app.analyticstracking.enitity.AnalyticsLog;
 import com.rifluxyss.app.analyticstracking.upload.Logger;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,12 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
             List<AnalyticsLog> analyticsLogs1 = analytics.getSpecificDaysLogs(LocalDateTime.now().getDayOfWeek().minus(2).getValue(),
                     LocalDateTime.now().getDayOfWeek().minus(0).getValue());
-            Log.e("status","Start Day====> " +LocalDateTime.now().getDayOfWeek().minus(2).getValue());
-            Log.e("status","END Day====> " +LocalDateTime.now().getDayOfWeek().minus(0).getValue());
-            Log.e("status","check Size Logs====> " + analyticsLogs1.size());
+            Log.e("status", "Start Day====> " + LocalDateTime.now().getDayOfWeek().minus(2).getValue());
+            Log.e("status", "END Day====> " + LocalDateTime.now().getDayOfWeek().minus(0).getValue());
+            Log.e("status", "check Size Logs====> " + analyticsLogs1.size());
 
             List<AnalyticsLog> analyticsLogs = analytics.getAllLog();
-            new Logger().uploadLogsAPi(analyticsLogs).observe(this, response -> Log.e("status", "get Response===> " + response));
+            new Logger().uploadLogsAPi(analyticsLogs).observe(this, response ->
+                    Log.e("status", "get Response===> " + response != null ? response : "Failure Data")
+            );
 
         } catch (Throwable throwable) {
             Log.e("status", "get Response===> " + throwable.getLocalizedMessage());
