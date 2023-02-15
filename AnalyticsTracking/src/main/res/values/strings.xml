@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="str_apiUrl">https://cpas100.na.cintas.com/</string>
+    <string name="str_apiUrl">http://cpas100.na.cintas.com/</string>
     <string name="str_datetimeFormat">MM/dd/yy hh:mm:ss a</string>
     <string name="str_database">analytics-data.db</string>
     <string name="empty_string"/>
@@ -23,6 +23,6 @@
     <string name="exeception">Given logs list is null</string>
     <string name="date_filter">yyyy-mm-dd</string>
     <string name="no_network">Please check your network and try again.</string>
-    <string name="dcApp_code">CP-SAPDC2</string>
+    <string name="dcApp_code">CPRNT</string>
     <string name="str_semicol">;</string>
 </resources>

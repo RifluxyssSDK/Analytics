@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         logEntity.eventNbr = eventNumber;
         logEntity.addtlDesc = description;
         logEntity.addtlNbr = additionalNumber;
-        logEntity.logger = "PRC test";
+        logEntity.logger = "ANALYTICS test";
         return logEntity;
     }
 

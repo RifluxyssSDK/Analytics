@@ -196,7 +196,7 @@ public class Utils extends AppManagerSingleton {
     public boolean checkInternetConnection() {
 
         ConnectivityManager connectivityManager = (ConnectivityManager)getInstance().getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = (NetworkInfo) connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
